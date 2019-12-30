@@ -283,3 +283,13 @@
       visibility: hidden;
     }
   }
+  .cls-1 {
+    fill: none;
+  }
+
+  .cls-2 {
+    fill: #ffffff;
+  }
+  #appFooter-component{
+    background-color: black;
+  }
