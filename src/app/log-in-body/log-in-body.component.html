@@ -1,10 +1,20 @@
 <body>
+
+    <div class="area">
+        <ol class="circles">
+            <li>doc</li><li>pdf</li><li>docx</li><li>png</li><li>jpeg</li><li>mp3</li><li>mp4</li><li>pptx</li><li>ppt</li><li>jpg</li><li>web</li>       
+            <li>doc</li><li>pdf</li><li>docx</li><li>png</li><li>jpeg</li><li>mp3</li><li>mp4</li><li>pptx</li><li>ppt</li><li>jpg</li><li>web</li> 
+            <li>pdf</li>
+            
+        </ol>
+    </div>
+    <div class="loginbackground">
     <div id="login" *ngIf="!showLoginForm">
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <!-- Icon -->
                 <div class="fadeIn first">
-                    <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
+                    <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100" width="180" />
                     <h2 style="color:#969799;">Aroha File Box</h2>
 
                 </div>
@@ -21,7 +31,7 @@
                 </form>
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover"  id="showForgot" (click)="showLogin()"
+                    <a class="underlineHover" id="showForgot" (click)="showLogin()"
                         style="font-family: 'Courier New', Courier, monospace;">Forgot Password?</a>
                 </div>
             </div>
@@ -51,5 +61,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
