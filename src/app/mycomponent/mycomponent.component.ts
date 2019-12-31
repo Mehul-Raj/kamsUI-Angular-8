@@ -7,5 +7,6 @@ import {Component} from '@angular/core';
 })
 
 export class MyComponent{
-
+    name:String='Mehul';
+    age:number=26;
 }

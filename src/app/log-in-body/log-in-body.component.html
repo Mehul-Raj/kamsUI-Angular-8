@@ -1,0 +1,55 @@
+<body>
+    <div id="login" *ngIf="!showLoginForm">
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
+                    <h2 style="color:#969799;">Aroha File Box</h2>
+
+                </div>
+                <br>
+                <!-- Login Form -->
+                <form action="myData" method="post">
+
+                    <input type="text" name="eMail" id="login" class="fadeIn second" placeholder="User Email" required
+                        style="font-family: 'Courier New', Courier, monospace;">
+                    <input type="password" name="userPwd" id="password" class="fadeIn third" placeholder="password"
+                        required style="font-family: 'Courier New', Courier, monospace;">
+                    <input type="submit" class="fadeIn fourth" [disabled]="!disableBtn" value="Log In"
+                        style="font-family: 'Courier New', Courier, monospace;">
+                </form>
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover"  id="showForgot" (click)="showLogin()"
+                        style="font-family: 'Courier New', Courier, monospace;">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Forgot Password -->
+    <div id="forgot" *ngIf="showLoginForm">
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
+                    <h2 style="color:#969799;">Aroha File Box</h2>
+                </div>
+                <br>
+                <!-- Generate PassWord -->
+                <form action="forgetPassword" method="post">
+                    <input type="text" name="emailForOtp" id="login" class="fadeIn second" placeholder="Enter Email"
+                        required style="font-family: 'Courier New', Courier, monospace;">
+                    <input type="submit" class="fadeIn fourth" value="Generate OTP"
+                        style="font-family: 'Courier New', Courier, monospace;">
+                </form>
+                <!-- Login Again -->
+                <div id="formFooter">
+                    <a class="underlineHover" id="showLogin" (click)="showLogin()"
+                        style="font-family: 'Courier New', Courier, monospace;">LogIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
