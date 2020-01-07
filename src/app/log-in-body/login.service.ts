@@ -4,14 +4,14 @@ import { environment } from '../../environments/environment';
 import {Observable} from 'rxjs';
 
 @Injectable()
-export class LoginService{
+export class LoginService {
 
   baseUrl = environment.baseUrl; 
   constructor(private http: HttpClient) { }
 
   checkUserLogin(loginData):Observable<any>{
-   var login:{'user_email':string,'user_password':string}={'user_email':loginData.email,'user_password':loginData.password};
-    return this.http.post(this.baseUrl+'/api/users/checkUserLoginCredentials',login
+   var login:{'eMail':string,'userPwd':string}={'eMail':loginData.eMail,'userPwd':loginData.userPwd};
+    return this.http.post(this.baseUrl+'/api/dropbox/checkLogin',login
     ,{
       headers: new HttpHeaders({
             'Content-Type':  'application/json'
@@ -20,7 +20,3 @@ export class LoginService{
     );
   }
 }
-
-
-
-

@@ -20,13 +20,14 @@
                 </div>
                 <br>
                 <!-- Login Form -->
+                
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-                    <input type="text" name="eMail" id="login" class="fadeIn second" placeholder="User Email" required
+                    <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second" placeholder="User Email" required
                         style="font-family: 'Courier New', Courier, monospace;">
-                    <input type="password" name="userPwd" id="password" class="fadeIn third" placeholder="password"
+                    <input type="password"  pInputText formControlName="userPwd" id="password" class="fadeIn third" placeholder="password"
                         required style="font-family: 'Courier New', Courier, monospace;">
-                    <input type="submit" class="fadeIn fourth" [disabled]="!disableBtn" value="Log In"
+                    <input type="submit" class="fadeIn fourth" value="Log In"
                         style="font-family: 'Courier New', Courier, monospace;">
                 </form>
                 <!-- Remind Passowrd -->
@@ -48,7 +49,7 @@
                 </div>
                 <br>
                 <!-- Generate PassWord -->
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="OTPForm" (ngSubmit)="onSubmit()">
                     <input type="text" name="emailForOtp" id="login" class="fadeIn second" placeholder="Enter Email"
                         required style="font-family: 'Courier New', Courier, monospace;">
                     <input type="submit" class="fadeIn fourth" value="Generate OTP"

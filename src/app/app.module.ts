@@ -8,21 +8,38 @@ import { HeadderComponent } from './shared/headder/headder.component';
 import { LogInBodyComponent } from './log-in-body/log-in-body.component';
 import { AdminComponent } from './admin/admin.component';
 import { CompanyComponent } from './admin/company/company.component';
+import { UserComponent } from './user/user.component';
+import {HttpClientModule} from '@angular/common/http'
+import { DepartmentComponent } from './admin/department/department.component'
+import { ProjectComponent } from './admin/project/project.component'
+import { TeamComponent } from './admin/team/team.component'
+import { CreateUserComponent } from './admin/user/user.component'
+import { SearchComponent } from './user/search/search.component';
+import { ShowComponent } from './user/show/show.component';
+import { UploadComponent } from './user/upload/upload.component';
 @NgModule({
   declarations: [
     AppComponent,
-  
     Footer,
     HeadderComponent,
     LogInBodyComponent,
     AdminComponent,
-    CompanyComponent
+    CompanyComponent,
+    DepartmentComponent,
+    ProjectComponent,
+    TeamComponent,
+    CreateUserComponent,
+    UserComponent,
+    SearchComponent,
+    ShowComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

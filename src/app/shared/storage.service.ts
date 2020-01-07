@@ -5,7 +5,7 @@ export class StorageService {
 
   constructor() { }
 
-  setSession=(key,value):void=>{
+setSession=(key,value):void=>{
     window.sessionStorage.setItem(key, value);
   }
 
