@@ -1,17 +1,15 @@
-body {
+.my-body {
   background-color: e3cba1;
   position: relative;
   background-color: rgb(243, 243, 245);
   overflow-y: hidden;
   
 }
-.loginbackground{
+.my-loginbackground{
   background-image: url("/assets/image/01.jpg");
   background-position: center;
   height: 100%; 
   height: 100%; 
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,14 +19,6 @@ body {
 html {
   font-family: 'Courier New', Courier, monospace;
 }
-
-a {
-  color: #92badd;
-  display:inline-block;
-  text-decoration: none;
-  font-weight: 400;
-}
-
 h2 {
   text-align: center;
   font-size: 16px;
@@ -38,8 +28,6 @@ h2 {
   margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
-
-
 
 /* STRUCTURE */
 
@@ -51,7 +39,7 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
-}
+} 
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
@@ -76,21 +64,6 @@ h2 {
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
-
-
-
-/* TABS */
-
-h2.inactive {
-  color: #cccccc;
-}
-
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
-}
-
-
 
 /* FORM TYPOGRAPHY*/
 
@@ -128,7 +101,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text],input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -148,68 +121,21 @@ input[type=text] {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
-
- input[type=password] {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 80%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-
 
 label{
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
-input[type=text]:focus {
+input[type=text]:focus,input[type=date]:focus ,input[type=password]:focus,input[type=number]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
-input[type=password]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-input[type=date]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=date]:placeholder {
-  color: #cccccc;
-}
-input[type=number]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=number]:placeholder {
+input[type=text]:placeholder,input[type=date]:placeholder,input[type=number]:placeholder  {
   color: #cccccc;
 }
 
 /* ANIMATIONS */
-
-
-
-/* Simple CSS3 Fade-in Animation */
+/* Simple CSS3 Fade-in Animation 
 .underlineHover:after {
   display: block;
   left: 0;
@@ -231,13 +157,13 @@ input[type=number]:placeholder {
 
 
 
-/* OTHERS */
+/* OTHERS
 
 *:focus {
     outline: none;
 } 
 
-/* Header Navigation Bar */
+/* Header Navigation Bar 
 ul {
   list-style-type: none;
   margin: 0;
@@ -288,27 +214,8 @@ li a:hover:not(.active) {
   text-align: center;
 }
 
-/* Background Animation   */
-@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
-
-
-.context {
-    width: 100%;
-    position: absolute;
-    top:50vh;
-    
-}
-
-
-.area{
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
-    width: 100%;
-   
-    
-   
-}
-
-.circles{
+*/
+.my-circles{
     position: absolute;
     top: 0;
     left: 0;
@@ -317,7 +224,7 @@ li a:hover:not(.active) {
     overflow: hidden;
 }
 
-.circles li{
+.my-circles li{
      position: absolute;
     display: block;
     list-style: none;
@@ -327,7 +234,7 @@ li a:hover:not(.active) {
     bottom: -150px;
 }
 
-.circles li:nth-child(1){
+.my-circles li:nth-child(1){
     background: rgb(78, 30, 209);
     left: 25%;
     width: 80px;
@@ -340,7 +247,7 @@ li a:hover:not(.active) {
 }
 
 
-.circles li:nth-child(2){
+.my-circles li:nth-child(2){
   background: rgb(209, 46, 18);
     left: 10%;
     width: 90px;
@@ -353,7 +260,7 @@ li a:hover:not(.active) {
     line-height: 4.8rem;
 }
 
-.circles li:nth-child(3){
+.my-circles li:nth-child(3){
   background: rgba(163, 140, 7, 0.884);
     left: 70%;
     width: 80px;
@@ -365,7 +272,7 @@ li a:hover:not(.active) {
     line-height: 4.6rem;
 }
 
-.circles li:nth-child(4){
+.my-circles li:nth-child(4){
   background: rgb(19, 2, 46);
     left: 40%;
     width: 60px;
@@ -377,7 +284,7 @@ li a:hover:not(.active) {
     font-size: 160%;
     line-height: 3.2rem;
 }
-.circles li:nth-child(5){
+.my-circles li:nth-child(5){
   background: rgb(23, 48, 6);
     left: 65%;
     width: 80px;
@@ -389,7 +296,7 @@ li a:hover:not(.active) {
     line-height: 4.6rem;
 }
 
-.circles li:nth-child(6){
+.my-circles li:nth-child(6){
   background: rgb(151, 10, 81);
     left: 75%;
     width: 110px;
@@ -401,7 +308,7 @@ li a:hover:not(.active) {
     line-height: 7.2rem;
 }
 
-.circles li:nth-child(7){
+.my-circles li:nth-child(7){
   background: rgb(4, 91, 97);
     left: 35%;
     width: 115px;
@@ -413,7 +320,7 @@ li a:hover:not(.active) {
     line-height: 7.3rem;
 }
 
-.circles li:nth-child(8){
+.my-circles li:nth-child(8){
   background: rgb(53, 22, 17);
     left: 50%;
     width: 65px;
@@ -426,7 +333,7 @@ li a:hover:not(.active) {
     line-height: 3.6rem;
 }
 
-.circles li:nth-child(9){
+.my-circles li:nth-child(9){
   background: rgb(16, 20, 59);
     left: 20%;
     width: 45px;
@@ -440,7 +347,7 @@ li a:hover:not(.active) {
     line-height: 2.4rem;
 }
 
-.circles li:nth-child(10){
+.my-circles li:nth-child(10){
   background: rgb(77, 5, 83);
     left: 85%;
     width: 100px;
@@ -452,7 +359,7 @@ li a:hover:not(.active) {
     font-size: 160%;
     line-height: 7rem;
 }
-.circles li:nth-child(11){
+.my-circles li:nth-child(11){
   background: rgb(78, 30, 209);
   left: 82%;
   width: 80px;
@@ -465,7 +372,7 @@ li a:hover:not(.active) {
 }
 
 
-.circles li:nth-child(12){
+.my-circles li:nth-child(12){
 background: rgb(209, 46, 18);
   left: 11%;
   width: 90px;
@@ -478,7 +385,7 @@ background: rgb(209, 46, 18);
     line-height: 5rem;
 }
 
-.circles li:nth-child(13){
+.my-circles li:nth-child(13){
 background: rgba(85, 82, 66, 0.884);
   left: 37%;
   width: 80px;
@@ -490,7 +397,7 @@ background: rgba(85, 82, 66, 0.884);
     line-height: 4.6rem;
 }
 
-.circles li:nth-child(14){
+.my-circles li:nth-child(14){
 background: rgb(19, 2, 46);
   left: 24%;
   width: 60px;
@@ -502,7 +409,7 @@ background: rgb(19, 2, 46);
     font-size: 160%;
     line-height: 4rem;
 }
-.circles li:nth-child(15){
+.my-circles li:nth-child(15){
 background: rgb(23, 48, 6);
   left: 16%;
   width: 80px;
@@ -514,7 +421,7 @@ background: rgb(23, 48, 6);
     line-height: 4.6rem;
 }
 
-.circles li:nth-child(16){
+.my-circles li:nth-child(16){
 background: rgb(151, 10, 81);
   left: 77%;
   width: 110px;
@@ -526,7 +433,7 @@ background: rgb(151, 10, 81);
     line-height: 7rem;
 }
 
-.circles li:nth-child(17){
+.my-circles li:nth-child(17){
 background: rgb(4, 91, 97);
   left: 17%;
   width: 105px;
@@ -538,7 +445,7 @@ background: rgb(4, 91, 97);
     line-height: 7rem;
 }
 
-.circles li:nth-child(18){
+.my-circles li:nth-child(18){
 background: rgb(71, 65, 64);
   left: 25%;
   width: 65px;
@@ -551,7 +458,7 @@ background: rgb(71, 65, 64);
     line-height: 3.6rem;
 }
 
-.circles li:nth-child(19){
+.my-circles li:nth-child(19){
 background: rgb(161, 164, 194);
   left: 10%;
   width: 55px;
@@ -564,7 +471,7 @@ background: rgb(161, 164, 194);
     line-height: 3.4rem;
 }
 
-.circles li:nth-child(20){
+.my-circles li:nth-child(20){
 background: rgb(77, 5, 83);
   left: 5%;
   width: 105px;
@@ -577,7 +484,7 @@ background: rgb(77, 5, 83);
     line-height: 6.5rem;
 }
 
-.circles li:nth-child(21){
+.my-circles li:nth-child(21){
   background: rgb(229, 152, 236);
     left: 85%;
     width: 120px;
@@ -589,7 +496,7 @@ background: rgb(77, 5, 83);
     font-size: 160%;
     line-height: 7.7rem;
 }
-.circles li:nth-child(22){
+.my-circles li:nth-child(22){
   background: rgb(26, 12, 27);
     left: 85%;
     width: 120px;
@@ -602,7 +509,7 @@ background: rgb(77, 5, 83);
     line-height: 7.7rem;
     
 }
-.circles li:nth-child(23){
+.my-circles li:nth-child(23){
   background: rgb(70, 31, 73);
     left: 85%;
     width: 110px;

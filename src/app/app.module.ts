@@ -8,15 +8,23 @@ import { HeadderComponent } from './shared/headder/headder.component';
 import { LogInBodyComponent } from './log-in-body/log-in-body.component';
 import { AdminComponent } from './admin/admin.component';
 import { CompanyComponent } from './admin/company/company.component';
-import { UserComponent } from './user/user.component';
+import { StorageService } from '../app/shared/storage.service';
+
 import {HttpClientModule} from '@angular/common/http'
 import { DepartmentComponent } from './admin/department/department.component'
 import { ProjectComponent } from './admin/project/project.component'
 import { TeamComponent } from './admin/team/team.component'
-import { CreateUserComponent } from './admin/user/user.component'
+import { CreateUserComponent } from './admin/create-user/user.component'
+
+import { UserComponent } from './user/user.component';
 import { SearchComponent } from './user/search/search.component';
 import { ShowComponent } from './user/show/show.component';
 import { UploadComponent } from './user/upload/upload.component';
+import { HeaderLogInComponent } from './shared/header-log-in/header-log-in.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,16 +40,23 @@ import { UploadComponent } from './user/upload/upload.component';
     UserComponent,
     SearchComponent,
     ShowComponent,
-    UploadComponent
+    UploadComponent,
+    HeaderLogInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

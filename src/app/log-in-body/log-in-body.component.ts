@@ -25,7 +25,9 @@ export class LogInBodyComponent implements OnInit {
       userPwd: ['', [Validators.required, Validators.minLength(1)]],
       eMail: ['', Validators.required]
     });
+    sessionStorage.clear();
   }
+
   ngOnDestroy() {
     if (this.loginSubscription$ !== undefined) {
       this.loginSubscription$.unsubscribe();
@@ -52,13 +54,16 @@ export class LogInBodyComponent implements OnInit {
       this._storage.setSession("userdepartment",resp.userdepartment);
       this._storage.setSession("userRole",resp.userRole);
       this._storage.setSession("isAuthenticated",true);
-
-
-      if (resp.userRole == 'Admin') {
-        console.log("Admin");
+      if (resp.userRole=='Admin') {
+        console.log("inside Admin");
+        console.log(resp.userRole,"Role");
+        debugger;
         this.router.navigate(['/admin']);
       }
-      if (resp.userRole == 'TL' || 'PM' || 'U') {
+      if (resp.userRole == 'TL' || resp.userRole == 'PM' || resp.userRole ==  'U') {
+        debugger;
+        console.log("In Side User");
+        console.log(resp.userRole,"Role") 
         this.router.navigate(['/user']);
       }else{
         this.setMessage={message:resp.errorMessage,error:true};

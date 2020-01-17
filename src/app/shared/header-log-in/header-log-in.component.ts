@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../shared/storage.service';
-import { Router } from '@angular/router';
-
+import { StorageService } from '../storage.service'
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-header-log-in',
+  templateUrl: './header-log-in.component.html',
+  styleUrls: ['./header-log-in.component.css']
 })
-
-export class AdminComponent implements OnInit {
-
-  private router: Router
-
+export class HeaderLogInComponent implements OnInit {
 
   constructor(private _storage: StorageService) { }
   userName: String;
@@ -21,4 +15,3 @@ export class AdminComponent implements OnInit {
     this.userRole = this._storage.getSession("userRole");
   }
 }
-

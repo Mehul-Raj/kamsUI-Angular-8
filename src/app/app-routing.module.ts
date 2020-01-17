@@ -6,7 +6,7 @@ import { CompanyComponent } from './admin/company/company.component';
 import { DepartmentComponent } from './admin/department/department.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { TeamComponent } from './admin/team/team.component';
-import { CreateUserComponent } from './admin/user/user.component';
+import { CreateUserComponent } from './admin/create-user/user.component';
 import { UserComponent } from './user/user.component';
 import { SearchComponent } from './user/search/search.component';
 import { ShowComponent } from './user/show/show.component';

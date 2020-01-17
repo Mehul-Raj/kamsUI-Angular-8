@@ -1,12 +1,38 @@
-<div class="row contaner">
+<!-- Header -->
+<app-header-log-in></app-header-log-in>
+<div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <div class="vertical-menu">
-            <a class="active" id="createCompany">Upload Document</a>
-            <a id="createDepartment">Show Document</a>
-            <a id="createProject">Search Document</a>
-            <a id="createTeam">Show Graph</a>
-            <a class="showSingle" class="active" id="createUser">Create User</a>
+        <div class="left">
+            <div class="item">
+                <i class="material-icons">line_weight</i>
+            </div>
+            <div class="item active">
+                <i class="material-icons">unarchive</i>
+                <a href="#">Upload Doc</a>
+            </div>
+            <div class="item">
+                <i class="fas fa-fw fa-columns"></i>
+                <a href="#">Show Doc</a>
+            </div>
+            <div class="item">
+                <i class="material-icons">search</i>
+                <a href="#">Search By Type</a>
+            </div>
+            <div class="item">
+                <i class="material-icons">account_box</i>
+                <a href="#">User Account</a>
+            </div>
+            <div class="item">
+                <i class="material-icons">visibility</i>
+                <a href="#">Access Level</a>
+            </div>
+            <div class="item">
+                <i class="material-icons">power_settings_new</i>
+                <a href="#">Log Out</a>
+            </div>
         </div>
-    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
+    </div>
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+    </div>
 </div>
-</div>
+<appFooter-component></appFooter-component>
