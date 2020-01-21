@@ -4,35 +4,38 @@
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
         <div class="left">
             <div class="item">
-                <i class="material-icons">line_weight</i>
+                <i class="material-icons">list</i><br>
             </div>
-            <div class="item active">
-                <i class="material-icons">unarchive</i>
-                <a href="#">Upload Doc</a>
+            <div class="item active" (click)="UploadComponent();">
+                <i class="material-icons">cloud_upload</i>
+                <a>Upload Doc</a>
             </div>
-            <div class="item">
-                <i class="fas fa-fw fa-columns"></i>
-                <a href="#">Show Doc</a>
+            <div class="item" (click)="ShowComponent();">
+                <i class="material-icons"> filter_none </i>
+                <a>Show Doc</a>
             </div>
-            <div class="item">
+            <div class="item" (click)="SearchComponent();">
                 <i class="material-icons">search</i>
-                <a href="#">Search By Type</a>
+                <a>Search By Type</a>
             </div>
             <div class="item">
                 <i class="material-icons">account_box</i>
-                <a href="#">User Account</a>
+                <a>User Account</a>
             </div>
             <div class="item">
                 <i class="material-icons">visibility</i>
-                <a href="#">Access Level</a>
+                <a>Access Level</a>
             </div>
             <div class="item">
                 <i class="material-icons">power_settings_new</i>
-                <a href="#">Log Out</a>
+                <a>Log Out</a>
             </div>
         </div>
     </div>
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <app-search *ngIf="loadSearchComponent"></app-search>
+        <app-show  *ngIf="loadShowComponent"></app-show>
+        <app-upload  *ngIf="loadUploadComponent"></app-upload>
     </div>
 </div>
 <appFooter-component></appFooter-component>

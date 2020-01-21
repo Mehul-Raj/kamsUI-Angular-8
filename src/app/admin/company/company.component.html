@@ -1,1 +1,18 @@
-<p>company works!</p>
+<div class="card m-3">
+    <h5 class="card-header">Create Company</h5>
+    <div class="card-body">
+        <form [formGroup]="createCompanyData" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Company Name</label>
+                    <input type="text" pInputText formControlName="companyName" class="form-control" required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Create</button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="showMsg">Company With Name {{CompanyName}} created</div>

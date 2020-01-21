@@ -18,6 +18,7 @@
     white-space: nowrap;
     width: 50px;
     transition: width .5s;
+    
 }
 
 .right {
@@ -39,12 +40,12 @@
 
 .left .fas {
     margin: 15px;
-    width: 20px;
+    width: 25px;
     color: #fff;
 }
 
 i.fas {
-    font-size: 17px;
+    font-size: 30px;
     vertical-align: middle !important;
 }
 
@@ -57,9 +58,16 @@ i.fas {
     margin: 15px;
     width: 20px;
     color: #fff;
-    font-size: 17px;
+    font-size: 30px;
     vertical-align: middle !important;
+    margin-bottom: 15px;
 }
 a{
     color: #fff;
 }
+a:hover {
+    text-decoration: none;
+  }
+  a:active {
+    text-decoration: none;
+  }

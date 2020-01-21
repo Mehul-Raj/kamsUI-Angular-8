@@ -1,1 +1,48 @@
-<p>upload works!</p>
+<div class="card m-3">
+    <h5 class="card-header">Upload File</h5>
+    <div class="card-body">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Select file</label>
+                    <input type="file" name="fileName" class="form-control" [(ngModel)]="model.firstName"
+                        #fileName="ngModel"required>
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                        <div *ngIf="firstName.errors.required">File is required</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>Upload To</label>
+                    <select name="uploadTo" class="form-control" [(ngModel)]="model.uploadTo" #title="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && uploadTo.invalid }" required>
+                        <option value=""></option>
+                        <option value="Company">Company</option>
+                        <option value="Department">Department</option>
+                        <option value="Project">Project</option>
+                        <option value="Team">Team</option>
+                    </select>
+                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                        <div *ngIf="teamName.errors.required">Team Name Is required</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>Select tag</label>
+                    <select name="teamName" class="form-control" [(ngModel)]="model.teamName" #title="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && teamName.invalid }" required>
+                        <option value=""></option>
+                        <option value="doc">doc</option>
+                        <option value="pdf">pdf</option>
+                        <option value="ppt">ppt</option>
+                    </select>
+                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                        <div *ngIf="teamName.errors.required">Team Name Is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Upload</button>
+                <button class="btn btn-secondary" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
