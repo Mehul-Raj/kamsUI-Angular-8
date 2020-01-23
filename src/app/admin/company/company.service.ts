@@ -12,7 +12,7 @@ export class CompanyService {
 
   createCompany(createCompanyData):Observable<any>{
    var create:{'companyName':string}={'companyName':createCompanyData.companyName};
-    return this.http.post(this.baseUrl+'/api/dropbox/createCompany',create
+    return this.http.post(this.baseUrl+'/api/dropbox/admin/createCompany',create
     ,{
       headers: new HttpHeaders({
             'Content-Type':  'application/json'

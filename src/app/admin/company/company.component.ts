@@ -18,7 +18,10 @@ export class CompanyComponent implements OnInit {
   companySubscription$: Subscription;
   setMessage: any = {};
   CompanyName :String;
-  showMsg:boolean=false;
+  successMsg:boolean=false;
+  errorMsg:boolean=false;
+  msg:String;
+  status:String;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private _companyService: CompanyService, private _storage: StorageService) { }
@@ -36,11 +39,14 @@ export class CompanyComponent implements OnInit {
 
     this.companySubscription$ = this._companyService.createCompany(this.createCompanyData.value).subscribe(resp => {
       console.log("response Object ", resp);
-      console.log(resp.companyId);
-      console.log(resp.companyName);
-      this.CompanyName = resp.companyName;
-      if(this.CompanyName!=null){
-        this.showMsg=true;
+      this.msg = resp.msg;
+      this.status=resp.status.toUpperCase();
+      if(this.status=='ERROR'){
+        this.successMsg=false;
+        this.errorMsg=true;
+      }else if(this.status=='SUCCESS'){
+        this.errorMsg=false;
+        this.successMsg=true;
       }
       {
         this.setMessage = { message: resp.errorMessage, error: true };
@@ -48,7 +54,7 @@ export class CompanyComponent implements OnInit {
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
-    this.router.navigate(['/admin']);
+   // this.router.navigate(['/admin']);
   }
 
 }

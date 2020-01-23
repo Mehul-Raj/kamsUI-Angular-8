@@ -54,13 +54,12 @@ export class LogInBodyComponent implements OnInit {
       this._storage.setSession("userdepartment",resp.userdepartment);
       this._storage.setSession("userRole",resp.userRole);
       this._storage.setSession("isAuthenticated",true);
-      if (resp.userRole=='Admin') {
+      if (resp.userRole.toUpperCase() =='ADMIN') {
         console.log("inside Admin");
         console.log(resp.userRole,"Role");
-        debugger;
         this.router.navigate(['/admin']);
       }
-      if (resp.userRole == 'TL' || resp.userRole == 'PM' || resp.userRole ==  'U') {
+      if (resp.userRole.toUpperCase() == 'USER' || resp.userRole.toUpperCase() == 'PM' || resp.userRole ==  'TL') {
         debugger;
         console.log("In Side User");
         console.log(resp.userRole,"Role") 

@@ -15,4 +15,5 @@
         </form>
     </div>
 </div>
-<div *ngIf="showMsg">Company With Name {{CompanyName}} created</div>
+<div  class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
+<div class="text-danger" *ngIf="errorMsg">{{status}} {{msg}}</div>
