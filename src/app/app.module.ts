@@ -9,6 +9,8 @@ import { LogInBodyComponent } from './log-in-body/log-in-body.component';
 import { AdminComponent } from './admin/admin.component';
 import { CompanyComponent } from './admin/company/company.component';
 import { StorageService } from '../app/shared/storage.service';
+import { ToastrModule } from 'ngx-toastr';
+import { AlertModule } from 'ngx-bootstrap';
 
 import {HttpClientModule} from '@angular/common/http'
 import { DepartmentComponent } from './admin/department/department.component'
@@ -24,6 +26,7 @@ import { HeaderLogInComponent } from './shared/header-log-in/header-log-in.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
+import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatL
     SearchComponent,
     ShowComponent,
     UploadComponent,
-    HeaderLogInComponent
+    HeaderLogInComponent,
+  
+    ErrorAlertComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,9 @@ import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatL
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    ToastrModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   providers: [StorageService],
   bootstrap: [AppComponent]

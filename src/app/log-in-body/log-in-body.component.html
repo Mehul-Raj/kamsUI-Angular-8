@@ -4,70 +4,101 @@
 <body class="my-body">
     <div class="my-area">
         <ol class="my-circles">
-            <li>doc</li><li>pdf</li><li>docx</li><li>png</li><li>jpeg</li><li>mp3</li><li>mp4</li><li>pptx</li><li>ppt</li><li>jpg</li><li>web</li>       
-            <li>doc</li><li>pdf</li><li>docx</li><li>png</li><li>jpeg</li><li>mp3</li><li>mp4</li><li>pptx</li><li>ppt</li><li>jpg</li><li>web</li> 
-            <li>pdf</li>   
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>pdf</li>
         </ol>
     </div>
     <div class="my-loginbackground">
-    <div id="login" *ngIf="!showLoginForm">
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <!-- Icon -->
-                <div class="fadeIn first">
-                    <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100" width="180" />
-                    <h2 style="color:#969799;">Aroha File Box</h2>
+        <div id="login" *ngIf="!showLoginForm">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100"
+                            width="180" />
+                        <h2 style="color:#969799;">Aroha File Box</h2>
 
+                    </div>
+                    <br>
+                    <!-- Login Form -->
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                        <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second"
+                            placeholder="User Email" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.eMail.errors && f.eMail.touched" class="invalid">
+                            <div *ngIf="f.eMail.errors.required">
+                                <p>Email is required</p>
+                            </div>
+                        </div>
+                        <input type="password" pInputText formControlName="userPwd" id="password" class="fadeIn third"
+                            placeholder="password" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.userPwd.errors && f.userPwd.touched" class="invalid">
+                            <div *ngIf="f.userPwd.errors.required">
+                                <p>Password is required</p>
+                            </div>
+                        </div>
+                        <input type="submit" class="fadeIn fourth" value="Log In"
+                            style="font-family: 'Courier New', Courier, monospace;">
+
+                    </form>
+                    <!-- Remind Passowrd -->
+                    <div id="formFooter">
+                        <a class="underlineHover" id="showForgot" (click)="showLogin()"
+                            style="font-family: 'Courier New', Courier, monospace;">Forgot Password?</a>
+                    </div>
                 </div>
-                <br>
-                <!-- Login Form -->
-                
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-                    <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second" placeholder="User Email" required
-                        style="font-family: 'Courier New', Courier, monospace;">
-                    <input type="password"  pInputText formControlName="userPwd" id="password" class="fadeIn third" placeholder="password"
-                        required style="font-family: 'Courier New', Courier, monospace;">
-                    <input type="submit" class="fadeIn fourth" value="Log In"
-                        style="font-family: 'Courier New', Courier, monospace;">
-                </form>
-                <!-- Remind Passowrd -->
-                <div id="formFooter">
-                    <a class="underlineHover" id="showForgot" (click)="showLogin()"
-                        style="font-family: 'Courier New', Courier, monospace;">Forgot Password?</a>
+            </div>
+        </div>
+        <!-- Forgot Password -->
+        <div id="forgot" *ngIf="showLoginForm">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
+                        <h2 style="color:#969799;">Aroha File Box</h2>
+                    </div>
+                    <br>
+                    <!-- Generate PassWord -->
+                    <form [formGroup]="OTPForm" (ngSubmit)="onSubmit()">
+                        <input type="text" name="emailForOtp" id="login" class="fadeIn second" placeholder="Enter Email"
+                            required style="font-family: 'Courier New', Courier, monospace;">
+                        <input type="submit" class="fadeIn fourth" value="Generate OTP"
+                            style="font-family: 'Courier New', Courier, monospace;">
+                    </form>
+                    <!-- Login Again -->
+                    <div id="formFooter">
+                        <a class="underlineHover" id="showLogin" (click)="showLogin()"
+                            style="font-family: 'Courier New', Courier, monospace;">LogIn</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Forgot Password -->
-    <div id="forgot" *ngIf="showLoginForm">
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <!-- Icon -->
-                <div class="fadeIn first">
-                    <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
-                    <h2 style="color:#969799;">Aroha File Box</h2>
-                </div>
-                <br>
-                <!-- Generate PassWord -->
-                <form [formGroup]="OTPForm" (ngSubmit)="onSubmit()">
-                    <input type="text" name="emailForOtp" id="login" class="fadeIn second" placeholder="Enter Email"
-                        required style="font-family: 'Courier New', Courier, monospace;">
-                    <input type="submit" class="fadeIn fourth" value="Generate OTP"
-                        style="font-family: 'Courier New', Courier, monospace;">
-                </form>
-                <!-- Login Again -->
-                <div id="formFooter">
-                    <a class="underlineHover" id="showLogin" (click)="showLogin()"
-                        style="font-family: 'Courier New', Courier, monospace;">LogIn</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    
+
 </body>
 
 <!-- Footer-->
 <appFooter-component></appFooter-component>
-

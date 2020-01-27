@@ -16,7 +16,8 @@ export class LogInBodyComponent implements OnInit {
   loginForm: FormGroup;
   showLoginForm: boolean = false;
   loginSubscription$: Subscription;
-  setMessage:any={};
+  setMessage: any = {};
+  get f(): any { return this.loginForm.controls; }
   constructor(private formBuilder: FormBuilder,
     private router: Router, private _loginService: LoginService, private _storage: StorageService) { }
 
@@ -36,39 +37,39 @@ export class LogInBodyComponent implements OnInit {
   showLogin() {
     this.showLoginForm = !this.showLoginForm;
   }
-  get f(): any { return this.loginForm.controls; }
+
 
   onSubmit() {
 
     if (this.loginForm.invalid) {
       return;
     }
-    
-    this.loginSubscription$ = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
-     console.log("response Object ",resp);console.log("User Name",resp.userName);
 
-      this._storage.setSession("userName",resp.userName);
-      this._storage.setSession("userProjectName",resp.userProjectName);
-      this._storage.setSession("userTeamName",resp.userTeamName);
-      this._storage.setSession("eMail",resp.eMail);
-      this._storage.setSession("userdepartment",resp.userdepartment);
-      this._storage.setSession("userRole",resp.userRole);
-      this._storage.setSession("isAuthenticated",true);
-      if (resp.userRole.toUpperCase() =='ADMIN') {
+    this.loginSubscription$ = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
+      console.log("response Object ", resp); console.log("User Name", resp.userName);
+
+      this._storage.setSession("userName", resp.userName);
+      this._storage.setSession("userProjectName", resp.userProjectName);
+      this._storage.setSession("userTeamName", resp.userTeamName);
+      this._storage.setSession("eMail", resp.eMail);
+      this._storage.setSession("userdepartment", resp.userdepartment);
+      this._storage.setSession("userRole", resp.userRole);
+      this._storage.setSession("isAuthenticated", true);
+      if (resp.userRole.toUpperCase() == 'ADMIN') {
         console.log("inside Admin");
-        console.log(resp.userRole,"Role");
+        console.log(resp.userRole, "Role");
         this.router.navigate(['/admin']);
       }
-      if (resp.userRole.toUpperCase() == 'USER' || resp.userRole.toUpperCase() == 'PM' || resp.userRole ==  'TL') {
+      if (resp.userRole.toUpperCase() == 'USER' || resp.userRole.toUpperCase() == 'PM' || resp.userRole == 'TL') {
         debugger;
         console.log("In Side User");
-        console.log(resp.userRole,"Role") 
+        console.log(resp.userRole, "Role")
         this.router.navigate(['/user']);
-      }else{
-        this.setMessage={message:resp.errorMessage,error:true};
-      }     
-    },err=>{
-      this.setMessage={message:'Server Error /Server Unreachable!',error:true};
+      } else {
+        this.setMessage = { message: resp.errorMessage, error: true };
+      }
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
   }
 

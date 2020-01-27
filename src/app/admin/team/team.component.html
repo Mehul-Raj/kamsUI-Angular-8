@@ -1,58 +1,44 @@
 <div class="card m-3">
     <h5 class="card-header">Create Team</h5>
     <div class="card-body">
-        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <form [formGroup]="createTeamData" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col">
                     <label>Company Name</label>
-                    <select name="companyName" class="form-control" [(ngModel)]="model.companyName" #title="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && companyName.invalid }" required>
+                    <select  pInputText formControlName="companyName" class="form-control" required>
                         <option value=""></option>
                         <option value="Aroha">Aroha</option>
                         <option value="Infy">Infy</option>
                     </select>
-                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                        <div *ngIf="companyName.errors.required">Company Is required</div>
-                    </div>
                 </div>
                 <div class="form-group col">
                     <label>Department Name</label>
-                    <select name="departmentName" class="form-control" [(ngModel)]="model.departmentName"
-                        #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && departmentName.invalid }" required>
+                    <select  pInputText formControlName="departmentName" class="form-control" required>
                         <option value=""></option>
                         <option value="Java">Java</option>
                         <option value="SQL">SQL</option>
                     </select>
-                    <div *ngIf="f.submitted && departmentName.invalid" class="invalid-feedback">
-                        <div *ngIf="departmentName.errors.required">Department Is required</div>
-                    </div>
                 </div>
                 <div class="form-group col">
                     <label>Project Name</label>
-                    <select name="projectName" class="form-control" [(ngModel)]="model.projectName" #title="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && projectName.invalid }" required>
+                    <select  pInputText formControlName="projectName" class="form-control" required>
                         <option value=""></option>
                         <option value="Java">PET</option>
                         <option value="SQL">Domain</option>
                     </select>
-                    <div *ngIf="f.submitted && projectName.invalid" class="invalid-feedback">
-                        <div *ngIf="projectName.errors.required">Project Is required</div>
-                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-5">
                     <label>Team Name</label>
-                    <input type="text" name="teamName" class="form-control" [(ngModel)]="model.teamName"
-                        #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && teamName.invalid }" required>
-                    <div *ngIf="f.submitted && teamName.invalid" class="invalid-feedback">
-                        <div *ngIf="teamName.errors.required">Team Name is required</div>
-                    </div>
+                    <input type="text"  pInputText formControlName="teamName" class="form-control" required>
                 </div>
             </div>
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Create</button>
                 <button class="btn btn-secondary" type="reset">Cancel</button>
+                <div class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
+                <div class="text-danger" *ngIf="errorMsg">{{status}} {{msg}}</div>
             </div>
         </form>
     </div>

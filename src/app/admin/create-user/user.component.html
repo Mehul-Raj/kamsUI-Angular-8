@@ -1,70 +1,64 @@
 <div class="card m-3">
-    <h5 class="card-header">Create Team</h5>
+    <h5 class="card-header">Create User</h5>
     <div class="card-body">
-        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <form [formGroup]="createUserData" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col">
                     <label>Company Name</label>
-                    <select name="companyName" class="form-control" [(ngModel)]="model.companyName" #title="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && companyName.invalid }" required>
+                    <select pInputText formControlName="userCompany" class="form-control" required>
                         <option value=""></option>
                         <option value="Aroha">Aroha</option>
                         <option value="Infy">Infy</option>
                     </select>
-                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                        <div *ngIf="companyName.errors.required">Company Is required</div>
-                    </div>
                 </div>
                 <div class="form-group col">
                     <label>Department Name</label>
-                    <select name="departmentName" class="form-control" [(ngModel)]="model.departmentName"
-                        #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && departmentName.invalid }" required>
+                    <select pInputText formControlName="userdepartment" class="form-control" required>
                         <option value=""></option>
                         <option value="Java">Java</option>
                         <option value="SQL">SQL</option>
                     </select>
-                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                        <div *ngIf="departmentName.errors.required">Department Is required</div>
-                    </div>
                 </div>
                 <div class="form-group col">
                     <label>Project Name</label>
-                    <select name="projectName" class="form-control" [(ngModel)]="model.projectName" #title="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && projectName.invalid }" required>
+                    <select pInputText formControlName="userProjectName" class="form-control" required>
                         <option value=""></option>
                         <option value="Java">PET</option>
                         <option value="SQL">Domain</option>
                     </select>
-                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                        <div *ngIf="projectName.errors.required">Project Is required</div>
-                    </div>
                 </div>
                 <div class="form-group col">
                     <label>Team Name</label>
-                    <select name="teamName" class="form-control" [(ngModel)]="model.teamName" #title="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && teamName.invalid }" required>
+                    <select pInputText formControlName="userTeamName" class="form-control" required>
                         <option value=""></option>
-                        <option value="Java">PET</option>
-                        <option value="SQL">Domain</option>
+                        <option value="UI">UI</option>
+                        <option value="API">API</option>
                     </select>
-                    <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                        <div *ngIf="teamName.errors.required">Team Name Is required</div>
-                    </div>
                 </div>
             </div>
             <div class="form-row">
+                <div class="form-group col">
+                    <label>Select Role</label>
+                    <select pInputText formControlName="userRole" class="form-control" required>
+                        <option value=""></option>
+                        <option value="UI">UI</option>
+                        <option value="API">API</option>
+                    </select>
+                </div>
+                <div class="form-group col-5">
+                    <label>Email Id</label>
+                    <input type="text" pInputText formControlName="eMail" class="form-control" required>
+                </div>
                 <div class="form-group col-5">
                     <label>User Name</label>
-                    <input type="text" name="userName" class="form-control" [(ngModel)]="model.userName"
-                        #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && userName.invalid }" required>
-                    <div *ngIf="f.submitted && userName.invalid" class="invalid-feedback">
-                        <div *ngIf="userName.errors.required">User Name is required</div>
-                    </div>
+                    <input type="text" pInputText formControlName="userName" class="form-control" required>
                 </div>
             </div>
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Create</button>
                 <button class="btn btn-secondary" type="reset">Cancel</button>
+                <div class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
+                <div class="text-danger" *ngIf="loading">Loading....</div>
             </div>
         </form>
     </div>

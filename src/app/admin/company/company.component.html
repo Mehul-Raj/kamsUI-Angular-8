@@ -11,9 +11,9 @@
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Create</button>
                 <button class="btn btn-secondary" type="reset">Reset</button>
+                <div class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
+                <div class="text-danger" *ngIf="errorMsg">{{status}} {{msg}}</div>
             </div>
         </form>
     </div>
 </div>
-<div  class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
-<div class="text-danger" *ngIf="errorMsg">{{status}} {{msg}}</div>

@@ -17,22 +17,21 @@ export class CompanyComponent implements OnInit {
   createCompanyData: FormGroup;
   companySubscription$: Subscription;
   setMessage: any = {};
-  CompanyName :String;
-  successMsg:boolean=false;
-  errorMsg:boolean=false;
-  msg:String;
-  status:String;
+  successMsg: boolean = false;
+  errorMsg: boolean = false;
+  msg: String;
+  status: String;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private _companyService: CompanyService, private _storage: StorageService) { }
 
-  ngOnInit() { this.createCompanyData = this.formBuilder.group({
+  ngOnInit() {
+  this.createCompanyData = this.formBuilder.group({
     companyName: ['', [Validators.required, Validators.minLength(1)]],
   });
-  sessionStorage.clear();
-}
+    sessionStorage.clear();
+  }
   onSubmit() {
-
     if (this.createCompanyData.invalid) {
       return;
     }
@@ -40,21 +39,23 @@ export class CompanyComponent implements OnInit {
     this.companySubscription$ = this._companyService.createCompany(this.createCompanyData.value).subscribe(resp => {
       console.log("response Object ", resp);
       this.msg = resp.msg;
-      this.status=resp.status.toUpperCase();
-      if(this.status=='ERROR'){
-        this.successMsg=false;
-        this.errorMsg=true;
-      }else if(this.status=='SUCCESS'){
-        this.errorMsg=false;
-        this.successMsg=true;
+      this.status = resp.status.toUpperCase();
+      if (this.status == 'ERROR') {
+        this.successMsg = false;
+        this.router.navigate(['/admin']);
+        this.errorMsg = true;
+      } else if (this.status == 'SUCCESS') {
+        this.errorMsg = false;
+        this.successMsg = true;
       }
+
       {
         this.setMessage = { message: resp.errorMessage, error: true };
       }
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
-   // this.router.navigate(['/admin']);
+    // this.router.navigate(['/admin']);
   }
 
 }
