@@ -6,6 +6,7 @@
                 <div class="form-group col">
                     <label>Company Name</label>
                     <select  pInputText formControlName="companyName" class="form-control" required >
+                        <option value='{{company.companyName}}' *ngFor="let role of companyName">{{company.companyName}}</option>
                         <option value=""></option>
                         <option value="Aroha">Aroha</option>
                         <option value="Infy">Infy</option>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DepartmentService } from '../department/department.service'
+import { DepartmentService } from '../../module-service/department.service'
 import { StorageService } from '../../shared/storage.service';
 
 @Component({

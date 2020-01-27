@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TeamService } from '../team/team.service';
+import { TeamService } from '../../module-service/team.service';
 import { StorageService } from '../../shared/storage.service';
 
 @Component({

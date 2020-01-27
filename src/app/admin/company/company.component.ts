@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CompanyService } from './company.service';
+
+import { CompanyService } from '../../module-service/company.service';
 import { StorageService } from '../../shared/storage.service';
 
 @Component({
@@ -12,8 +13,6 @@ import { StorageService } from '../../shared/storage.service';
   providers: [CompanyService, StorageService]
 })
 export class CompanyComponent implements OnInit {
-
-
   createCompanyData: FormGroup;
   companySubscription$: Subscription;
   setMessage: any = {};
@@ -26,9 +25,9 @@ export class CompanyComponent implements OnInit {
     private router: Router, private _companyService: CompanyService, private _storage: StorageService) { }
 
   ngOnInit() {
-  this.createCompanyData = this.formBuilder.group({
-    companyName: ['', [Validators.required, Validators.minLength(1)]],
-  });
+    this.createCompanyData = this.formBuilder.group({
+      companyName: ['', [Validators.required, Validators.minLength(1)]],
+    });
     sessionStorage.clear();
   }
   onSubmit() {
