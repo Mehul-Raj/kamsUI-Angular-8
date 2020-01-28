@@ -20,4 +20,13 @@ export class CompanyService {
     }
     );
   }
+  public getCompany(){
+    return this.http.get(this.baseUrl+'/api/dropbox/admin/getCompanyName');
+  }
+  /*
+  getCompany():Observable<any>{
+    console.log("YES-1");
+    return this.http.get(`${this.baseUrl}/api/dropbox/admin/getCompanyName`);
+  }
+  */
 }

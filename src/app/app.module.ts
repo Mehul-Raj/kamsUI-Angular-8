@@ -11,7 +11,7 @@ import { CompanyComponent } from './admin/company/company.component';
 import { StorageService } from '../app/shared/storage.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
-
+import {ConfirmationService} from 'primeng/api';
 import {HttpClientModule} from '@angular/common/http'
 import { DepartmentComponent } from './admin/department/department.component'
 import { ProjectComponent } from './admin/project/project.component'
@@ -63,7 +63,7 @@ import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.compo
     ToastrModule.forRoot(),
     AlertModule.forRoot(),
   ],
-  providers: [StorageService],
+  providers: [StorageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
