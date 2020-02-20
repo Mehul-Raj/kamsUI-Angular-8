@@ -10,6 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   checkUserLogin(loginData):Observable<any>{
+    console.log("Login Object")
    var login:{'eMail':string,'userPwd':string}={'eMail':loginData.eMail,'userPwd':loginData.userPwd};
     return this.http.post(this.baseUrl+'/api/dropbox/checkLogin',login
     ,{

@@ -33,7 +33,7 @@ export class CompanyComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.getAllCompany();
+    //this.getAllCompany();
     this.createCompanyData = this.formBuilder.group({
       companyName: ['', [Validators.required, Validators.minLength(1)]],
     });
