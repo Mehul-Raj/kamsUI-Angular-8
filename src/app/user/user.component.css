@@ -71,3 +71,9 @@ a:hover {
   a:active {
     text-decoration: none;
   }
+  table{
+      border-color: black;
+  }
+  thead{
+      background-color: rgb(183, 183, 236);
+  }

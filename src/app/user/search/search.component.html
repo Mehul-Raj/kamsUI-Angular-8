@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1">Create</button>
+                        <button class="btn btn-primary mr-1">Search</button>
                         <button class="btn btn-secondary" type="reset">Cancel</button>
                     </div>
                 </form>
@@ -34,12 +34,12 @@
                             <label>Select Type</label>
                             <select formControlName="searchByTypeName" class="form-control" required>
                                 <option value="Java">Java</option>
-                                <option value="doc">doc</option>
+                                <option value="pdf">pdf</option>
                             </select>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1">Create</button>
+                        <button class="btn btn-primary mr-1">Search</button>
                         <button class="btn btn-secondary" type="reset">Cancel</button>
                     </div>
                 </form>
@@ -49,7 +49,7 @@
 </div>
 
 <div *ngIf="y">
-    <table>
+    <table class="table">
         <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
         <tr *ngFor="let fileData of FileDetailsTag">
             <td>{{fileData.fileName}}</td>
@@ -61,9 +61,9 @@
 </div>
 
 <div *ngIf="z">
-    <table *ngIf>
+    <table class="table">
         <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
-        <tr *ngFor="let fileData of FileDetailsTypy">
+        <tr *ngFor="let fileData of FileDetailsType">
             <td>{{fileData.fileName}}</td>
             <td>{{fileData.uploadBy}}</td>
             <td>{{fileData.fileSize}}</td>

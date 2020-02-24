@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../shared/storage.service';
 import { ShowService } from './show.service'
 import { Subscription } from 'rxjs';
-
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user',
@@ -15,11 +15,12 @@ export class UserComponent implements OnInit {
   private loadShowComponent: boolean = false;
   private loadUploadComponent: boolean = true;
   private showDocumant: boolean = false;
-  x:boolean=true;
+
   userSubscription$: Subscription;
   eMail: string;
   FileDetails: string[];
   setMessage: any = {};
+
 
   constructor(
     private _storage: StorageService,
@@ -28,10 +29,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.eMail = this._storage.getSession('eMail');
-    this.x=true;
   }
   SearchComponent() {
-    this.x=true;
     this.loadUploadComponent = false;
     this.loadShowComponent = false;
     this.showDocumant = false;
@@ -53,18 +52,19 @@ export class UserComponent implements OnInit {
     this.loadUploadComponent = true;
     this.showDocumant = false;
   }
-
   onShow() {
     this.showDocumant = true;
     this.loadSearchComponent = false;
     this.loadShowComponent = false;
-    this.loadUploadComponent = false;    
+    this.loadUploadComponent = false;
     this.userSubscription$ = this._userService.getDocument().subscribe(respObj => {
       this.FileDetails = respObj;
-      console.log("File Details ",respObj)
+
+      console.log("File Details ", respObj)
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
+
   }
 }
 

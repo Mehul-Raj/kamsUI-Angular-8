@@ -34,18 +34,23 @@
     </div>
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
         <app-search *ngIf="loadSearchComponent"></app-search>
-        <app-show  *ngIf="loadShowComponent"></app-show>
-        <app-upload  *ngIf="loadUploadComponent"></app-upload>
+        <app-show *ngIf="loadShowComponent"></app-show>
+        <app-upload *ngIf="loadUploadComponent"></app-upload>
         <div *ngIf="showDocumant">
-            <table>
-                <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
+            <table  class="table">
+                <thead>
+                    <td>File Name</td>
+                    <td>Uploaded By</td>
+                    <td>File Size</td>
+                    <td>File Url</td>
+                </thead>
                 <tr *ngFor="let fileData of FileDetails">
                     <td>{{fileData.fileName}}</td>
                     <td>{{fileData.uploadBy}}</td>
                     <td>{{fileData.fileSize}}</td>
-                    <td><a href="{{fileData.fileUrl}}"  style="color: black;">View</a></td>
+                    <td><a href="{{fileData.fileUrl}}" style="color: black;">View</a></td>
                 </tr>
-            </table>
+            </table>                  
         </div>
     </div>
 </div>
