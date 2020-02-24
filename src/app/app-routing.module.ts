@@ -11,11 +11,12 @@ import { UserComponent } from './user/user.component';
 import { SearchComponent } from './user/search/search.component';
 import { ShowComponent } from './user/show/show.component';
 import { UploadComponent } from './user/upload/upload.component';
+import { AppGuard } from './app.guard';
 
 const routes: Routes = [
   { path: '', component: LogInBodyComponent },
   { path: 'login', component: LogInBodyComponent },
-  {path: 'admin', component: AdminComponent, children: [
+  {path: 'admin', component: AdminComponent,  canActivate: [AppGuard],children: [
     { path: 'create-company', component: CompanyComponent,data: {
       breadcrumb: "Create Company",icon: null
     } },
@@ -33,7 +34,7 @@ const routes: Routes = [
     } }],},
 
     //User Component
-    {path: 'user', component: UserComponent, children: [
+    {path: 'user', component: UserComponent,canActivate: [AppGuard], children: [
       { path: 'search-document-by-type', component: SearchComponent,data: {
         breadcrumb: "Create Company",icon: null
       } },

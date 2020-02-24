@@ -1,4 +1,6 @@
 <div class="card m-3">
+        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
     <h5 class="card-header">Create Company</h5>
     <div class="card-body">
         <form [formGroup]="createCompanyData" (ngSubmit)="onSubmit()">

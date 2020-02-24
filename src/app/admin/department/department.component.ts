@@ -15,48 +15,49 @@ export class DepartmentComponent implements OnInit {
 
   createDepartmentData: FormGroup;
   departmentSubscription$: Subscription;
+  companyNameSubscription$: Subscription;
   setMessage: any = {};
-  successMsg:boolean=false;
-  errorMsg:boolean=false;
-  msg:String;
-  status:String;
-  constructor(private formBuilder: FormBuilder,
-    private router: Router, private _departmentService: DepartmentService, private _storage: StorageService) { }
+  companyNames:string[];
+  msg: String;
+  status: String;
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private _departmentService: DepartmentService,
+    private _storage: StorageService,
+    private _companyNameService: DepartmentService
 
-    ngOnInit() { this.createDepartmentData = this.formBuilder.group({
-      companyName: ['', [Validators.required, Validators.minLength(1)]],
-      departmentName:['',[Validators.required,Validators.minLength(2)]]
-    });
-    sessionStorage.clear();
-  }
-  
-  onSubmit() {
+  ) { }
 
-    if (this.createDepartmentData.invalid) {
-      return;
-    }
-
-    this.departmentSubscription$ = this._departmentService.createDepartment(this.createDepartmentData.value).subscribe(resp => {
-      console.log("response Object ", resp);
-      this.msg = resp.msg;
-      this.status=resp.status.toUpperCase();
-      if(this.status=='ERROR'){
-        this.successMsg=false;
-        this.router.navigate(['/admin']);
-        this.errorMsg=true;
-      }else if(this.status=='SUCCESS'){
-        this.errorMsg=false;
-        this.successMsg=true;
-      }
-     
-      {
-        this.setMessage = { message: resp.errorMessage, error: true };
-      }
+  ngOnInit() {
+    this.companyNameSubscription$ = this._companyNameService.getCompanyName().subscribe(resp => {
+      this.companyNames=resp;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
-   // this.router.navigate(['/admin']);
+  
+    this.createDepartmentData = this.formBuilder.group({
+      companyName: ['', [Validators.required, Validators.minLength(1)]],
+      departmentName: ['', [Validators.required, Validators.minLength(2)]]
+    });
+    sessionStorage.clear();
   }
 
-
+  onSubmit() {
+    if (this.createDepartmentData.invalid) {
+      return;
+    }
+    this.departmentSubscription$ = this._departmentService.createDepartment(this.createDepartmentData.value).subscribe(resp => {
+      console.log("response Object ", resp);
+      this.msg = resp.msg;
+      this.status = resp.status.toUpperCase();
+      if (this.status == 'ERROR') {
+        this.router.navigate(['/admin']);
+        this.setMessage = { message: this.msg, error: true };
+      } else if (this.status == 'SUCCESS') {
+        this.router.navigate(['/admin']);
+        this.setMessage = { message: this.msg, msg: true };
+      }
+    })
+  }
 }

@@ -48,39 +48,12 @@ export class CompanyComponent implements OnInit {
       this.msg = resp.msg;
       this.status = resp.status.toUpperCase();
       if (this.status == 'ERROR') {
-        this.successMsg = false;
         this.router.navigate(['/admin']);
-        this.errorMsg = true;
+        this.setMessage = { message: this.msg, error: true };
       } else if (this.status == 'SUCCESS') {
-        this.errorMsg = false;
-        this.successMsg = true;
+        this.router.navigate(['/admin']);
+        this.setMessage = { message: this.msg, msg: true };
       }
-
-      {
-        this.setMessage = { message: resp.errorMessage, error: true };
-      }
-    }, err => {
-      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
   }
- 
- /*//Get The list of company
-  getAllCompany = (): void => {
-  this.listOfCompany$=this._companyService.getCompany().pipe(
-   map(resp=>{
-    console.log("YES-2");
-    console.log("response Object ", resp.companyName);
-     if(resp.status){
-       return resp.listOfCompany;
-     }else{
-      this.setMessage = { message: resp.errorMessage, error: true };
-      return [];
-     } 
-   }),
-   tap(res=>{},err=>{
-    this.setMessage = { message: `Server Error Occured! ,${err.name}, ${err.statusText}`, error: true };
-   })
-   )
-   console.log("YES-3");
-  }*/
 }

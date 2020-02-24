@@ -14,18 +14,26 @@ import { StorageService } from '../../shared/storage.service';
 export class CreateUserComponent implements OnInit {
 
   createUserData: FormGroup;
-  teamSubscription$: Subscription;
-  setMessage: any = {};
-  successMsg: boolean = false;
-  errorMsg: boolean = false;
-  msg: String;
-  status: String;
-  loading: boolean = false;
+  teamSubscription$: Subscription; companyNameSubscription$: Subscription; departmentNameSubscription$: Subscription; projectNameSubscription$: Subscription;
+  companyNames: string[]; departmentNames: string[]; projectNames: string[]; teamNames: string[];
+  selectedCompany: string; selectedDepartment: string; selected_Company: string;
+  setMessage: any = {};;
+  msg: String; status: String;
 
-  constructor(private formBuilder: FormBuilder,
-    private router: Router, private _createUserService: CreateUserService, private _storage: StorageService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private _createUserService: CreateUserService,
+    private _storage: StorageService,
+  ) { }
+
 
   ngOnInit() {
+    this.companyNameSubscription$ = this._createUserService.getCompanyName().subscribe(resp => {
+      this.companyNames = resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
     this.createUserData = this.formBuilder.group({
       userCompany: ['', [Validators.required, Validators.minLength(1)]],
       userdepartment: ['', [Validators.required, Validators.minLength(2)]],
@@ -41,25 +49,43 @@ export class CreateUserComponent implements OnInit {
     if (this.createUserData.invalid) {
       return;
     }
-    this.loading = true;
-
     this.teamSubscription$ = this._createUserService.createUser(this.createUserData.value).subscribe(resp => {
       console.log("response Object ", resp);
       this.msg = resp.msg;
-      this.loading = false;
       this.status = resp.status.toUpperCase();
       if (this.status == 'ERROR') {
-        this.successMsg = false;
         this.router.navigate(['/admin']);
-        this.errorMsg = true;
+        this.setMessage = { message: this.msg, error: true };
       } else if (this.status == 'SUCCESS') {
-        this.errorMsg = false;
-        this.successMsg = true;
+        this.router.navigate(['/admin']);
+        this.setMessage = { message: this.msg, msg: true };
       }
+    })
+  }
+  //Get Department Name
+  onChangeGetDepartment(event) {
+    this.selectedCompany = event.target.value;
+    this.departmentNameSubscription$ = this._createUserService.getDepartmentName(this.selectedCompany).subscribe(resp => {
+      this.departmentNames = resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
 
-      {
-        this.setMessage = { message: resp.errorMessage, error: true };
-      }
+  //Get Project Name Based On Department Name
+  onChangeGetProject(event) {
+    this.selectedDepartment = event.target.value;
+    this.projectNameSubscription$ = this._createUserService.getProjectName(this.selectedCompany, event.target.value).subscribe(respObj => {
+      this.projectNames = respObj;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
+  //Get Project Name Based On Department Name
+  onChangeGetTeam(event) {
+    this.projectNameSubscription$ = this._createUserService.getTeamName(this.selectedCompany, this.selectedDepartment, event.target.value).subscribe(respObj => {
+      this.teamNames = respObj;
+      console.log(respObj)
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })

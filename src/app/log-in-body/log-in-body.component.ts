@@ -37,33 +37,22 @@ export class LogInBodyComponent implements OnInit {
   showLogin() {
     this.showLoginForm = !this.showLoginForm;
   }
-
-
   onSubmit() {
-
     if (this.loginForm.invalid) {
       return;
     }
-
     this.loginSubscription$ = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
-      console.log("response Object ", resp); console.log("User Name", resp.userName);
-
-      this._storage.setSession("userName", resp.userName);
-      this._storage.setSession("userProjectName", resp.userProjectName);
-      this._storage.setSession("userTeamName", resp.userTeamName);
-      this._storage.setSession("eMail", resp.eMail);
-      this._storage.setSession("userdepartment", resp.userdepartment);
-      this._storage.setSession("userRole", resp.userRole);
-      this._storage.setSession("isAuthenticated", true);
+      console.log("response Object ", resp); 
+     let userEmail=resp.eMail
       if (resp.userRole.toUpperCase() == 'ADMIN') {
-        console.log("inside Admin");
-        console.log(resp.userRole, "Role");
+        this._storage.setSession("isAuthenticated", true);
+        this._storage.setSession("eMail",userEmail);
         this.router.navigate(['/admin']);
       }
-      if (resp.userRole.toUpperCase() == 'USER' || resp.userRole.toUpperCase() == 'PM' || resp.userRole == 'TL') {
-        debugger;
-        console.log("In Side User");
-        console.log(resp.userRole, "Role")
+      if (resp.userRole.toUpperCase() == 'ROLE_USER' || resp.userRole.toUpperCase() == 'ROLE_MANAGER' || resp.userRole == 'ROLE_TEAMLEAD') {
+        this._storage.setSession("isAuthenticated", true);
+        this._storage.setSession('eMail',userEmail);
+        this._storage.getSession('eMail')
         this.router.navigate(['/user']);
       } else {
         this.setMessage = { message: resp.errorMessage, error: true };

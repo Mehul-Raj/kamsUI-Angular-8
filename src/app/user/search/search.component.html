@@ -1,58 +1,73 @@
-<div class="row">
+<div class="row" *ngIf="x">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="card m-3">
-            <h5 class="card-header">Search By Type</h5>
+            <app-error-alert [setMessage]="setMessage"></app-error-alert>
+            <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+            <h5 class="card-header">Search By Tag</h5>
             <div class="card-body">
-                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <form [formGroup]="searchByTagData" (ngSubmit)="searchByTag()">
                     <div class="form-row">
                         <div class="form-group col">
-                            <label>Select tag</label>
-                            <select name="companyName" class="form-control" [(ngModel)]="model.companyName"
-                                #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && companyName.invalid }"
-                                required>
-                                <option value=""></option>
-                                <option value="Aroha">Java</option>
-                                <option value="Infy">SQL</option>
+                            <label>Select Tag</label>
+                            <select formControlName="searchByTagName" class="form-control" required>
+                                <option value="Java">Java</option>
                             </select>
-                            <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                                <div *ngIf="companyName.errors.required">Tag Is required</div>
-                            </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1">Search</button>
-                        <button class="btn btn-secondary" type="reset">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div> 
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="card m-3">
-            <h5 class="card-header">Search By Type</h5>
-            <div class="card-body">
-                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label>Select Type</label>
-                            <select name="companyName" class="form-control" [(ngModel)]="model.companyName"
-                                #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && companyName.invalid }"
-                                required>
-                                <option value=""></option>
-                                <option value="Aroha">doc</option>
-                                <option value="Infy">pdf</option>
-                            </select>
-                            <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
-                                <div *ngIf="companyName.errors.required">Document Type Is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary mr-1">Search</button>
+                        <button class="btn btn-primary mr-1">Create</button>
                         <button class="btn btn-secondary" type="reset">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="card m-3">
+            <app-error-alert [setMessage]="setMessage"></app-error-alert>
+            <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+            <h5 class="card-header">Search By Type</h5>
+            <div class="card-body">
+                <form [formGroup]="searchByTypeData" (ngSubmit)="searchByType()">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Select Type</label>
+                            <select formControlName="searchByTypeName" class="form-control" required>
+                                <option value="Java">Java</option>
+                                <option value="doc">doc</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1">Create</button>
+                        <button class="btn btn-secondary" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="y">
+    <table>
+        <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
+        <tr *ngFor="let fileData of FileDetailsTag">
+            <td>{{fileData.fileName}}</td>
+            <td>{{fileData.uploadBy}}</td>
+            <td>{{fileData.fileSize}}</td>
+            <td><a href="{{fileData.fileUrl}}"  style="color: black;">View</a></td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="z">
+    <table *ngIf>
+        <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
+        <tr *ngFor="let fileData of FileDetailsTypy">
+            <td>{{fileData.fileName}}</td>
+            <td>{{fileData.uploadBy}}</td>
+            <td>{{fileData.fileSize}}</td>
+            <td><a href="{{fileData.fileUrl}}"  style="color: black;">View</a></td>
+        </tr>
+    </table>
 </div>

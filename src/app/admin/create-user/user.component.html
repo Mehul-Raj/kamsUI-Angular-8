@@ -1,38 +1,43 @@
 <div class="card m-3">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
     <h5 class="card-header">Create User</h5>
     <div class="card-body">
         <form [formGroup]="createUserData" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col">
                     <label>Company Name</label>
-                    <select pInputText formControlName="userCompany" class="form-control" required>
-                        <option value=""></option>
-                        <option value="Aroha">Aroha</option>
-                        <option value="Infy">Infy</option>
+                    <select pInputText formControlName="userCompany" (change)="onChangeGetDepartment($event)" class="form-control"
+                        required>
+                        <option>--Select--</option>
+                        <option *ngFor="let company of companyNames" [value]="company.companyName">
+                            {{company.companyName}}</option>
                     </select>
                 </div>
                 <div class="form-group col">
                     <label>Department Name</label>
-                    <select pInputText formControlName="userdepartment" class="form-control" required>
-                        <option value=""></option>
-                        <option value="Java">Java</option>
-                        <option value="SQL">SQL</option>
+                    <select pInputText formControlName="userdepartment" (change)="onChangeGetProject($event)"
+                        class="form-control" required>
+                        <option>--Select--</option>
+                        <option *ngFor="let department of departmentNames" [value]="department.departmentName">
+                            {{department.departmentName}}</option>
                     </select>
                 </div>
                 <div class="form-group col">
                     <label>Project Name</label>
-                    <select pInputText formControlName="userProjectName" class="form-control" required>
-                        <option value=""></option>
-                        <option value="Java">PET</option>
-                        <option value="SQL">Domain</option>
+                    <select pInputText formControlName="userProjectName" (change)="onChangeGetTeam($event)" class="form-control" required>
+                            <option>--Select--</option>
+                        <option *ngFor="let project of projectNames" [value]="project.projectName">
+                            {{project.projectName}}</option>
                     </select>
                 </div>
+                
                 <div class="form-group col">
                     <label>Team Name</label>
                     <select pInputText formControlName="userTeamName" class="form-control" required>
-                        <option value=""></option>
-                        <option value="UI">UI</option>
-                        <option value="API">API</option>
+                            <option>--Select--</option>
+                            <option *ngFor="let team of teamNames" [value]="team.teamName">
+                                {{team.teamName}}</option>
                     </select>
                 </div>
             </div>
@@ -41,8 +46,10 @@
                     <label>Select Role</label>
                     <select pInputText formControlName="userRole" class="form-control" required>
                         <option value=""></option>
-                        <option value="UI">UI</option>
-                        <option value="API">API</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_MANAGER">Project Manager</option>
+                        <option value="ROLE_TEAMLEAD">Team Lead</option>
+                        <option value="ROLE_USER">User</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
@@ -57,8 +64,6 @@
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Create</button>
                 <button class="btn btn-secondary" type="reset">Cancel</button>
-                <div class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
-                <div class="text-danger" *ngIf="loading">Loading....</div>
             </div>
         </form>
     </div>

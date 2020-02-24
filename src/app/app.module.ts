@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
 import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.component';
+import { MsgAlertComponent } from './shared/msg-alert/msg-alert.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.compo
     UploadComponent,
     HeaderLogInComponent,
   
-    ErrorAlertComponent
+    ErrorAlertComponent,
+  
+    MsgAlertComponent
   ],
   imports: [
     BrowserModule,

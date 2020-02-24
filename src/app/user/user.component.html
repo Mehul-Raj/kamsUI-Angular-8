@@ -10,7 +10,7 @@
                 <i class="material-icons">cloud_upload</i>
                 <a>Upload Doc</a>
             </div>
-            <div class="item" (click)="ShowComponent();">
+            <div class="item" (click)="onShow();">
                 <i class="material-icons"> filter_none </i>
                 <a>Show Doc</a>
             </div>
@@ -36,6 +36,17 @@
         <app-search *ngIf="loadSearchComponent"></app-search>
         <app-show  *ngIf="loadShowComponent"></app-show>
         <app-upload  *ngIf="loadUploadComponent"></app-upload>
+        <div *ngIf="showDocumant">
+            <table>
+                <thead><td>File Name</td> <td> Uploaded By</td> <td>File Size</td> <td>File Url</td></thead>
+                <tr *ngFor="let fileData of FileDetails">
+                    <td>{{fileData.fileName}}</td>
+                    <td>{{fileData.uploadBy}}</td>
+                    <td>{{fileData.fileSize}}</td>
+                    <td><a href="{{fileData.fileUrl}}"  style="color: black;">View</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 <appFooter-component></appFooter-component>
