@@ -34,7 +34,7 @@ const routes: Routes = [
     } }],},
 
     //User Component
-    {path: 'user', component: UserComponent,canActivate: [AppGuard], children: [
+    {path: 'user', component: UserComponent,canActivate : [AppGuard], children: [
       { path: 'search-document-by-type', component: SearchComponent,data: {
         breadcrumb: "Create Company",icon: null
       } },

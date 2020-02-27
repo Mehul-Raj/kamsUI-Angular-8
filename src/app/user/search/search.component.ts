@@ -18,6 +18,8 @@ export class SearchComponent implements OnInit {
   setMessage: any = {};
   searchByTagData: FormGroup;
   searchByTypeData:FormGroup;
+  tagNameSubscription$:Subscription;
+  tagNames:string[];
   x:boolean;
   y:boolean;
   z:boolean;
@@ -32,6 +34,11 @@ export class SearchComponent implements OnInit {
     this.x=true;
     this.y=false;
     this.z=false;
+    this.tagNameSubscription$ = this._searchService.getTagName().subscribe(resp => {
+      this.tagNames=resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
     this.searchByTagData = this.formBuilderTag.group({
       searchByTagName:['',[Validators.required, Validators.minLength(2)]]
     });

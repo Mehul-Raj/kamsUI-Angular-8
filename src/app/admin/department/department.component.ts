@@ -40,7 +40,6 @@ export class DepartmentComponent implements OnInit {
       companyName: ['', [Validators.required, Validators.minLength(1)]],
       departmentName: ['', [Validators.required, Validators.minLength(2)]]
     });
-    sessionStorage.clear();
   }
 
   onSubmit() {

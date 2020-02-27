@@ -1,14 +1,15 @@
 <div class="card m-3">
-        <app-error-alert [setMessage]="setMessage"></app-error-alert>
-        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
     <h5 class="card-header">Upload File</h5>
     <div class="card-body">
         <form [formGroup]="uploadFileData" (ngSubmit)="onUpload()">
             <div class="form-row">
                 <div class="form-group col-5">
                     <label>Pick a file to upload :-</label><br>
-                    <input type="file" style="display: none;"formControlName="file" (change)="onFileSelected($event)" #fileInput class="form-control" required>
-               <button type="button" (click)="fileInput.click()">Select File</button>
+                    <input type="file" style="display: none;" formControlName="file" (change)="onFileSelected($event)"
+                        #fileInput class="form-control" required>
+                    <button type="button" (click)="fileInput.click()">Select File</button>
                 </div>
                 <div class="form-group col">
                     <label>Upload To</label>
@@ -23,11 +24,10 @@
                 <div class="form-group col">
                     <label>Select tag</label>
                     <select formControlName="multiTag" class="form-control" required>
-                        <option value="">--Select--</option>
-                        <option value="doc">doc</option>
-                        <option value="pdf">pdf</option>
-                        <option value="ppt">ppt</option>
+                        <option *ngFor="let tag of tagNames"  [(ngValue)]="tag.tagName">
+                            {{tag.tagName}}</option>
                     </select>
+
                 </div>
             </div>
             <div class="text-center">

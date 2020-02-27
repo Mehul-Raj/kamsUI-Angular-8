@@ -28,7 +28,7 @@
             </div>
             <div class="item">
                 <i class="material-icons">power_settings_new</i>
-                <a>Log Out</a>
+                <a href="#">Log Out</a>
             </div>
         </div>
     </div>
@@ -37,20 +37,26 @@
         <app-show *ngIf="loadShowComponent"></app-show>
         <app-upload *ngIf="loadUploadComponent"></app-upload>
         <div *ngIf="showDocumant">
-            <table  class="table">
+            <table class="table" >
                 <thead>
                     <td>File Name</td>
                     <td>Uploaded By</td>
-                    <td>File Size</td>
-                    <td>File Url</td>
+                    <td>File Tag</td>
+                    <td>View</td>
+                    <td>Download</td>
                 </thead>
                 <tr *ngFor="let fileData of FileDetails">
                     <td>{{fileData.fileName}}</td>
                     <td>{{fileData.uploadBy}}</td>
-                    <td>{{fileData.fileSize}}</td>
-                    <td><a href="{{fileData.fileUrl}}" style="color: black;">View</a></td>
+                    <td>{{fileData.tag}}</td>
+                    
+                    <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
+                    <td *ngIf="fileData.storage=='Cloud'">Cloud Data Can't be downloaded</td>
+                    <td *ngIf="fileData.storage=='File'">Workin On It</td>
+                    <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+                    
                 </tr>
-            </table>                  
+            </table>
         </div>
     </div>
 </div>

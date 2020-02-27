@@ -43,7 +43,6 @@ export class CreateUserComponent implements OnInit {
       userName: ['', [Validators.required, Validators.minLength(2)]],
       userRole: ['', [Validators.required, Validators.minLength(1)]]
     });
-    sessionStorage.clear();
   }
   onSubmit() {
     if (this.createUserData.invalid) {

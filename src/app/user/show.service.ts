@@ -46,4 +46,9 @@ export class ShowService {
       })
     });
   }
+
+  //Get Tag Names
+  getTagName(): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/getTagName');
+  }
 }

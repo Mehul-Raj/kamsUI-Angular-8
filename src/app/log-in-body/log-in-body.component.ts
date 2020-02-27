@@ -26,40 +26,40 @@ export class LogInBodyComponent implements OnInit {
       userPwd: ['', [Validators.required, Validators.minLength(1)]],
       eMail: ['', Validators.required]
     });
-    sessionStorage.clear();
   }
 
-  ngOnDestroy() {
-    if (this.loginSubscription$ !== undefined) {
-      this.loginSubscription$.unsubscribe();
-    }
-  }
+  //Togel Login Form Ang Forget Password Form
   showLogin() {
     this.showLoginForm = !this.showLoginForm;
   }
+
+  //Check Login
   onSubmit() {
     if (this.loginForm.invalid) {
       return;
     }
     this.loginSubscription$ = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
-      console.log("response Object ", resp); 
-     let userEmail=resp.eMail
-      if (resp.userRole.toUpperCase() == 'ADMIN') {
-        this._storage.setSession("isAuthenticated", true);
-        this._storage.setSession("eMail",userEmail);
-        this.router.navigate(['/admin']);
+      let userEmail = resp.eMail;
+      if (resp.status.toUpperCase() == 'SUCCESS') {
+        if (resp.userRole.toUpperCase() == 'ROLE_ADMIN') {
+          this._storage.setSession('isAuthenticated', true);
+          this._storage.setSession('eMail', userEmail);
+          console.log("email Is ",this._storage.getSession('eMail'))
+          this.router.navigate(['/admin']);
+        }
+        if (resp.userRole.toUpperCase() == 'ROLE_USER' || resp.userRole.toUpperCase() == 'ROLE_MANAGER' || resp.userRole == 'ROLE_TEAMLEAD') {
+          this._storage.setSession("isAuthenticated", true);
+          this._storage.setSession('eMail', userEmail);
+          this.router.navigate(['/user']);
+        } else {
+          this.setMessage = { message: resp.errorMessage, error: true };
+        }
       }
-      if (resp.userRole.toUpperCase() == 'ROLE_USER' || resp.userRole.toUpperCase() == 'ROLE_MANAGER' || resp.userRole == 'ROLE_TEAMLEAD') {
-        this._storage.setSession("isAuthenticated", true);
-        this._storage.setSession('eMail',userEmail);
-        this._storage.getSession('eMail')
-        this.router.navigate(['/user']);
-      } else {
-        this.setMessage = { message: resp.errorMessage, error: true };
+      else {
+        this.setMessage = { message: resp.msg, error: true };
       }
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
   }
-
 }

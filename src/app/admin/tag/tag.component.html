@@ -1,0 +1,19 @@
+<div class="card m-3">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+<h5 class="card-header">Create Tag</h5>
+<div class="card-body">
+    <form [formGroup]="createTagData" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-5">
+                <label>Tag Name</label>
+                <input type="text" pInputText formControlName="tagName" class="form-control" required>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary mr-1">Create</button>
+            <button class="btn btn-secondary" type="reset">Reset</button>
+        </div>
+    </form>
+</div>
+</div>

@@ -45,6 +45,7 @@
 
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
                         <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second"
                             placeholder="User Email" required style="font-family: 'Courier New', Courier, monospace;">
                         <div *ngIf="f.eMail.errors && f.eMail.touched" class="invalid">

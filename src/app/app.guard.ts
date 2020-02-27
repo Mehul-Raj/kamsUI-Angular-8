@@ -21,6 +21,5 @@ export class AppGuard implements CanActivate {
       else{
         return this.router.parseUrl("/login");
       }
-  }
-  
+  }  
 }

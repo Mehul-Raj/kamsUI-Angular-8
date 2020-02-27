@@ -12,9 +12,14 @@ export class UploadService {
   constructor(private http: HttpClient) { }
 
   uploadFile(file):Observable<any>{
-    return this.http.post(this.baseUrl + '/api/dropbox/user/addFile',file,{
+    return this.http.post(this.baseUrl + '/uploadFile',file,{
       reportProgress: true,
       observe: 'events',responseType: 'text'  
     });
+  }
+
+  //Get Tag Names
+  getTagName(): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/getTagName');
   }
 }

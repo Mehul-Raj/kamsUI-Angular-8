@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  uploadFileData: FormGroup; uploadFileSubscription$: Subscription;
+  uploadFileData: FormGroup; uploadFileSubscription$: Subscription; tagNameSubscription$:Subscription;
   msg: String;
   status: String;
   setMessage: any = {};
@@ -23,6 +23,8 @@ export class UploadComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadFlag: boolean = false;
   eMail: string;
+  tagNames:string[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -32,6 +34,11 @@ export class UploadComponent implements OnInit {
   ) { }
   baseUrl = environment.baseUrl;
   ngOnInit() {
+    this.tagNameSubscription$ = this._uploadService.getTagName().subscribe(resp => {
+      this.tagNames=resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
     this.uploadFileData = this.formBuilder.group({
       file: [],
       uploadTo: ['', [Validators.required, Validators.minLength(1)]],

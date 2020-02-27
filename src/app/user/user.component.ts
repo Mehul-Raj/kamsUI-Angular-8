@@ -20,6 +20,8 @@ export class UserComponent implements OnInit {
   eMail: string;
   FileDetails: string[];
   setMessage: any = {};
+  storageCloud:boolean;
+  storageLocal:boolean;
 
 
   constructor(
@@ -58,13 +60,17 @@ export class UserComponent implements OnInit {
     this.loadShowComponent = false;
     this.loadUploadComponent = false;
     this.userSubscription$ = this._userService.getDocument().subscribe(respObj => {
-      this.FileDetails = respObj;
-
+      console.log(respObj)
+      this.FileDetails = respObj;  
+      console.log(respObj.storage)
       console.log("File Details ", respObj)
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
-
   }
+  viewFile(url:string){
+      window.open(url,'_blank', '', true);
+    }
+    
 }
 

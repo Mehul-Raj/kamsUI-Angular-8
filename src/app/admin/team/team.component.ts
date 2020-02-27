@@ -47,7 +47,7 @@ export class TeamComponent implements OnInit {
       projectName: ['', [Validators.required, Validators.minLength(2)]],
       teamName: ['', [Validators.required, Validators.minLength(2)]]
     });
-    sessionStorage.clear();
+    //sessionStorage.clear();
   }
   onSubmit() {
     if (this.createTeamData.invalid) {

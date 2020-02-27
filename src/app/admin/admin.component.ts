@@ -15,7 +15,8 @@ export class AdminComponent implements OnInit {
   private loadDepartmentCompnent: boolean = false;
   private loadProjectComponent: boolean = false;
   private loadTeamComponent: boolean = false;
-  private loadUserComponent = false;
+  private loadUserComponent:boolean = false;
+  private loadTagComponent:boolean = false;
 
   constructor(private _storage: StorageService) { }
   userName: String;
@@ -30,7 +31,7 @@ export class AdminComponent implements OnInit {
     this.loadProjectComponent = false;
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
-    //  this.loadCompanyComponent = !this.loadCompanyComponent;
+    this.loadTagComponent=false;
     this.loadCompanyComponent = true;
   }
   DepartmentComponent() {
@@ -38,7 +39,7 @@ export class AdminComponent implements OnInit {
     this.loadProjectComponent = false;
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
-    //this.loadDepartmentCompnent = !this.loadDepartmentCompnent;
+    this.loadTagComponent=false;
     this.loadDepartmentCompnent = true;
   }
   ProjectComponent() {
@@ -46,7 +47,7 @@ export class AdminComponent implements OnInit {
     this.loadDepartmentCompnent = false;
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
-    // this.loadProjectComponent=!this.loadProjectComponent;
+    this.loadTagComponent=false;
     this.loadProjectComponent = true;
   }
   TeamComponent() {
@@ -54,7 +55,7 @@ export class AdminComponent implements OnInit {
     this.loadDepartmentCompnent = false;
     this.loadProjectComponent = false;
     this.loadUserComponent = false;
-    //  this.loadTeamComponent=!this.loadTeamComponent;
+    this.loadTagComponent=false;
     this.loadTeamComponent = true;
   }
   UserComponent() {
@@ -62,8 +63,17 @@ export class AdminComponent implements OnInit {
     this.loadDepartmentCompnent = false;
     this.loadProjectComponent = false;
     this.loadTeamComponent = false;
-    // this.loadUserComponent=!this.loadUserComponent;
+    this.loadTagComponent=false;
     this.loadUserComponent = true;
+  }
+  TagComponent(){
+    this.loadCompanyComponent = false;
+    this.loadDepartmentCompnent = false;
+    this.loadProjectComponent = false;
+    this.loadTeamComponent = false;
+    this.loadUserComponent = false;
+    this.loadTagComponent=true;
+
   }
 }
 

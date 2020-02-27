@@ -47,7 +47,7 @@ export class ProjectComponent implements OnInit {
       departmentName: ['', [Validators.required, Validators.minLength(2)]],
       projectName: ['', [Validators.required, Validators.minLength(2)]]
     });
-    sessionStorage.clear();
+   // sessionStorage.clear();
   }
 
   onSubmit() {
