@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   private loadTeamComponent: boolean = false;
   private loadUserComponent:boolean = false;
   private loadTagComponent:boolean = false;
+  private loadgraphComponent:boolean=false;
 
   constructor(private _storage: StorageService) { }
   userName: String;
@@ -32,6 +33,7 @@ export class AdminComponent implements OnInit {
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
     this.loadTagComponent=false;
+    this.loadgraphComponent=false;
     this.loadCompanyComponent = true;
   }
   DepartmentComponent() {
@@ -40,6 +42,7 @@ export class AdminComponent implements OnInit {
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
     this.loadTagComponent=false;
+    this.loadgraphComponent=false;
     this.loadDepartmentCompnent = true;
   }
   ProjectComponent() {
@@ -48,6 +51,7 @@ export class AdminComponent implements OnInit {
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
     this.loadTagComponent=false;
+    this.loadgraphComponent=false;
     this.loadProjectComponent = true;
   }
   TeamComponent() {
@@ -56,6 +60,7 @@ export class AdminComponent implements OnInit {
     this.loadProjectComponent = false;
     this.loadUserComponent = false;
     this.loadTagComponent=false;
+    this.loadgraphComponent=false;
     this.loadTeamComponent = true;
   }
   UserComponent() {
@@ -64,6 +69,7 @@ export class AdminComponent implements OnInit {
     this.loadProjectComponent = false;
     this.loadTeamComponent = false;
     this.loadTagComponent=false;
+    this.loadgraphComponent=false;
     this.loadUserComponent = true;
   }
   TagComponent(){
@@ -72,8 +78,25 @@ export class AdminComponent implements OnInit {
     this.loadProjectComponent = false;
     this.loadTeamComponent = false;
     this.loadUserComponent = false;
+    this.loadgraphComponent=false;
     this.loadTagComponent=true;
+    
 
+  }
+  dashBoardComponent(){
+    this.loadCompanyComponent = false;
+    this.loadDepartmentCompnent = false;
+    this.loadProjectComponent = false;
+    this.loadTeamComponent = false;
+    this.loadUserComponent = false;
+    this.loadTagComponent=false;
+    this.loadgraphComponent=true;
+
+  }
+
+  //Log Out
+  logOut(){
+    sessionStorage.clear();
   }
 }
 

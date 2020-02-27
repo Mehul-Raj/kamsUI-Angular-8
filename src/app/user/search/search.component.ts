@@ -14,15 +14,15 @@ export class SearchComponent implements OnInit {
   searchSubscription$: Subscription;
   eMail: string;
   FileDetailsTag: string[];
-  FileDetailsType:string[];
+  FileDetailsType: string[];
   setMessage: any = {};
   searchByTagData: FormGroup;
-  searchByTypeData:FormGroup;
-  tagNameSubscription$:Subscription;
-  tagNames:string[];
-  x:boolean;
-  y:boolean;
-  z:boolean;
+  searchByTypeData: FormGroup;
+  tagNameSubscription$: Subscription;
+  tagNames: string[];
+  x: boolean;
+  y: boolean;
+  z: boolean;
   constructor(
     private formBuilderTag: FormBuilder,
     private formBuilderType: FormBuilder,
@@ -31,51 +31,55 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.x=true;
-    this.y=false;
-    this.z=false;
+    this.x = true;
+    this.y = false;
+    this.z = false;
     this.tagNameSubscription$ = this._searchService.getTagName().subscribe(resp => {
-      this.tagNames=resp;
+      this.tagNames = resp;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
     this.searchByTagData = this.formBuilderTag.group({
-      searchByTagName:['',[Validators.required, Validators.minLength(2)]]
+      searchByTagName: ['', [Validators.required, Validators.minLength(2)]]
     });
     this.searchByTypeData = this.formBuilderType.group({
-      searchByTypeName:['',[Validators.required, Validators.minLength(2)]]
+      searchByTypeName: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
-//Get File Based On Tag
-searchByTag(){
-  if (this.searchByTagData.invalid) {
-    return;
-  } 
-  
-  this.searchSubscription$ = this._searchService.getFileTag(this.searchByTagData.value).subscribe(resp => {
-    this.y=true;
-    this.FileDetailsTag = resp;
-    console.log(this.FileDetailsTag)
-    this.x=false;
-   
-  }, err => {
-    this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
-  })
-}
+  //Get File Based On Tag
+  searchByTag() {
+    if (this.searchByTagData.invalid) {
+      return;
+    }
 
-//Get File Based On Type
-searchByType(){
-  if (this.searchByTypeData.invalid) {
-    return;
-  } 
-  this.searchSubscription$ = this._searchService.getFileType(this.searchByTypeData.value).subscribe(resp => {
-    this.z=true;
-    this.FileDetailsType = resp;
-    console.log(this.FileDetailsType)
-    this.x=false;
-  }, err => {
-    this.z=true;
-    this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
-  })
-}
+    this.searchSubscription$ = this._searchService.getFileTag(this.searchByTagData.value).subscribe(resp => {
+      this.y = true;
+      this.FileDetailsTag = resp;
+      console.log(this.FileDetailsTag)
+      this.x = false;
+
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
+
+  //Get File Based On Type
+  searchByType() {
+    if (this.searchByTypeData.invalid) {
+      return;
+    }
+    this.searchSubscription$ = this._searchService.getFileType(this.searchByTypeData.value).subscribe(resp => {
+      this.z = true;
+      this.FileDetailsType = resp;
+      console.log(this.FileDetailsType)
+      this.x = false;
+    }, err => {
+      this.z = true;
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
+
+  viewFile(url: string) {
+    window.open(url, '_blank', '', true);
+  }
 }

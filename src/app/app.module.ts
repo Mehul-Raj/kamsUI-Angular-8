@@ -30,6 +30,7 @@ import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.compo
 import { MsgAlertComponent } from './shared/msg-alert/msg-alert.component';
 import {MatTableModule} from '@angular/material/table';
 import { TagComponent } from './admin/tag/tag.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { TagComponent } from './admin/tag/tag.component';
   
     MsgAlertComponent,
   
-    TagComponent
+    TagComponent,
+  
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

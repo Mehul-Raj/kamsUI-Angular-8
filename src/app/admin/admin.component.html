@@ -27,9 +27,15 @@
                 <a>Create User</a>
             </div>
             <div class="item" (click)="TagComponent();">
-                <i class="material-icons">dashboard</i>
+                <i class="fas fa-tag"></i>
                 <a>Create Tag</a>
             </div>
+
+            <div class="item" (click)="dashBoardComponent();">
+                <i class="fas fa-chart-line"></i>
+                <a>Dash Board</a>
+            </div>
+            
             <div class="item" (click)="logOut()">
                 <i class="material-icons">power_settings_new</i>
                 <a href="#">Log Out</a>
@@ -43,5 +49,7 @@
         <app-team *ngIf="loadTeamComponent"></app-team>
         <app-create-user *ngIf="loadUserComponent"></app-create-user>
         <app-tag *ngIf="loadTagComponent"></app-tag>
+        <app-dashboard *ngIf="loadgraphComponent"></app-dashboard>
     </div>
+
     <appFooter-component></appFooter-component>

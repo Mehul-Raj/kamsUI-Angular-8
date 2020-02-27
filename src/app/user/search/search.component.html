@@ -55,24 +55,36 @@
 
 <div *ngIf="y">
     <table class="table">
-        <thead><td>File Name</td> <td> Uploaded By</td> <td>File Tag</td> <td>File Url</td></thead>
+        <thead>
+            <td>File Name</td>
+            <td>Uploaded By</td>
+            <td>File Tag</td>
+            <td>View</td>
+        </thead>
         <tr *ngFor="let fileData of FileDetailsTag">
             <td>{{fileData.fileName}}</td>
             <td>{{fileData.uploadBy}}</td>
             <td>{{fileData.tag}}</td>
-            <td><a href="{{fileData.fileUrl}}"  target="_blank" style="color: black;">View</a></td>
-        </tr>
+            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
+            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+         </tr>
     </table>
 </div>
 
 <div *ngIf="z">
     <table class="table">
-        <thead><td>File Name</td> <td> Uploaded By</td> <td>File Tag</td> <td>File Url</td></thead>
+        <thead>
+            <td>File Name</td>
+            <td>Uploaded By</td>
+            <td>File Tag</td>
+            <td>View</td>
+        </thead>
         <tr *ngFor="let fileData of FileDetailsType">
             <td>{{fileData.fileName}}</td>
             <td>{{fileData.uploadBy}}</td>
             <td>{{fileData.tag}}</td>
-            <td><a href="{{fileData.fileUrl}}" target="_blank" style="color: black;">View</a></td>
-        </tr>
+            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
+            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+         </tr>
     </table>
 </div>
