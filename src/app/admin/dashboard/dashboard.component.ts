@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as CanvasJS from './canvasjs.min'
+//import { ChartsModule } from 'ng2-charts';
+import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,28 +12,32 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
   ngOnInit() {
-		let chart = new CanvasJS.Chart("chartContainer", {
-		animationEnabled: true,
-		exportEnabled: true,
-		title: {
-			text: "Basic Column Chart in Angular"
-		},
-		data: [{
-			type: "column",
-			dataPoints: [
-				{ y: 71, label: "Apple" },
-				{ y: 55, label: "Mango" },
-				{ y: 50, label: "Orange" },
-				{ y: 65, label: "Banana" },
-				{ y: 95, label: "Pineapple" },
-				{ y: 68, label: "Pears" },
-				{ y: 28, label: "Grapes" },
-				{ y: 34, label: "Lychee" },
-				{ y: 14, label: "Jackfruit" }
-			]
-		}]
-	});
-		
-	chart.render();
-    }
+  }
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels = ['Java', 'Sql', 'Angular', 'React', 'Python', 'Php', 'Golang'];
+  public barChartType = 'polarArea';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label:  'Total File On the Basis Of Tags' }
+  ];
+
+  public barChartOptionsType = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabelsType = ['pdf', 'Text', 'Image', 'Audio', 'Video',];
+  public barChartTypeType= 'doughnut';
+  public barChartLegendType = true;
+  public barChartDataType = [
+    {data: [15, 12, 19, 7, 16], label:  'Total File On the Basis Of Tags' }
+  ];
+  public colors= [{
+    fillColor: 'rgb(54,172,207)',
+    strokeColor: 'rgb(54,172,207)',
+    highlightFill: 'rgb(54,172,207)',
+    highlightStroke: 'rgb(54,172,207)'
+}];
 }

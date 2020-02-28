@@ -31,6 +31,7 @@ import { MsgAlertComponent } from './shared/msg-alert/msg-alert.component';
 import {MatTableModule} from '@angular/material/table';
 import { TagComponent } from './admin/tag/tag.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     MatListModule,
     ToastrModule.forRoot(),
     AlertModule.forRoot(),
+    BrowserModule,
+    ChartsModule
   ],
   
   providers: [StorageService,ConfirmationService],

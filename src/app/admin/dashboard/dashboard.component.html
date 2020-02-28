@@ -1,1 +1,26 @@
-<div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;">Hello</div>
+<div>
+    <alert type="success">
+        <strong>Document Chart</strong>
+    </alert>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div style="display: block" style="border-style: outset;">
+            <h5 class="card-header">Media Type</h5>
+            <canvas baseChart [datasets]="barChartDataType" [labels]="barChartLabelsType"
+                [options]="barChartOptionsType" [legend]="barChartLegendType" [chartType]="barChartTypeType">
+            </canvas>
+        </div>
+        <br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div style="display: block" style="border-style: outset;">
+            <h5 class="card-header">Content Tag</h5>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+        <br>
+    </div>
+</div>
