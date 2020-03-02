@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   private router: Router
-  private loadCompanyComponent: boolean = true;
+  private loadCompanyComponent: boolean = false;
   private loadDepartmentCompnent: boolean = false;
   private loadProjectComponent: boolean = false;
   private loadTeamComponent: boolean = false;
   private loadUserComponent:boolean = false;
   private loadTagComponent:boolean = false;
-  private loadgraphComponent:boolean=false;
+  private loadgraphComponent:boolean=true;
 
   constructor(private _storage: StorageService) { }
   userName: String;

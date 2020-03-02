@@ -10,8 +10,6 @@ export class TagService {
 
   baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
-
-
   //Create Tag
   createTag(createTagData): Observable<any> {
     var createTag: { 'tagName': string } = { 'tagName': createTagData.tagName };

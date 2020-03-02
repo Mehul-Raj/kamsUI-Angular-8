@@ -1,24 +1,21 @@
-<div>
-    <alert type="success">
-        <strong>Document Chart</strong>
-    </alert>
-</div>
-
+<alert type="success">
+    <strong>Document Chart</strong>
+</alert>
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div style="display: block" style="border-style: outset;">
-            <h5 class="card-header">Media Type</h5>
+            <h5 class="card-header">Content Tag</h5>
             <canvas baseChart [datasets]="barChartDataType" [labels]="barChartLabelsType"
-                [options]="barChartOptionsType" [legend]="barChartLegendType" [chartType]="barChartTypeType">
+                [options]="barChartOptionsType" [legend]="barChartLegendType" [chartType]="barChartTypeType"
+                [colors]="pieChartColor">
             </canvas>
         </div>
-        <br>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div style="display: block" style="border-style: outset;">
-            <h5 class="card-header">Content Tag</h5>
+            <h5 class="card-header">Media Type</h5>
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                [legend]="barChartLegend" [chartType]="barChartType">
+                [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColor">
             </canvas>
         </div>
         <br>

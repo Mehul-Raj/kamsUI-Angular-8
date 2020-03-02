@@ -14,8 +14,8 @@ import { StorageService } from '../../shared/storage.service';
 export class DepartmentComponent implements OnInit {
 
   createDepartmentData: FormGroup;
-  departmentSubscription$: Subscription;
-  companyNameSubscription$: Subscription;
+  departmentSubscription: Subscription;
+  companyNameSubscription: Subscription;
   setMessage: any = {};
   companyNames:string[];
   msg: String;
@@ -30,7 +30,7 @@ export class DepartmentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.companyNameSubscription$ = this._companyNameService.getCompanyName().subscribe(resp => {
+    this.companyNameSubscription = this._companyNameService.getCompanyName().subscribe(resp => {
       this.companyNames=resp;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
@@ -46,7 +46,7 @@ export class DepartmentComponent implements OnInit {
     if (this.createDepartmentData.invalid) {
       return;
     }
-    this.departmentSubscription$ = this._departmentService.createDepartment(this.createDepartmentData.value).subscribe(resp => {
+    this.departmentSubscription = this._departmentService.createDepartment(this.createDepartmentData.value).subscribe(resp => {
       console.log("response Object ", resp);
       this.msg = resp.msg;
       this.status = resp.status.toUpperCase();
