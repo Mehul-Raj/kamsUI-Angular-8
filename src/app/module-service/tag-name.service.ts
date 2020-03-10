@@ -16,9 +16,29 @@ export class TagNameService {
     return this.http.get(this.baseUrl + '/api/dropbox/admin/tagData');
   }
 
-  //get Tag Data
+  //get Type Data
   getTypeData(): Observable<any> {
     return this.http.get(this.baseUrl + '/api/dropbox/admin/typeData');
+  }
+
+  //get Type Data Company
+  getCompanyTagData(selectedCompany: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/chartCompany/' + selectedCompany);
+  }
+
+  //get Type Data Company
+  getCompanyTypeData(selectedCompany: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/typeDataCompany/' + selectedCompany);
+  }
+
+  //get Tag Data Department And Company
+  getDepartmentTag(selectedCompany: string, selected_Department: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/tagDepartment/' + selectedCompany + '/' + selected_Department)
+  }
+
+  //get Tag Data Department And Company
+  getDepartmentType(selectedCompany: string, selected_Department: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/typeDepartment/' + selectedCompany + '/' + selected_Department)
   }
 
 }

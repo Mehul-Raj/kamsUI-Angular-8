@@ -37,7 +37,7 @@
                     <div class="fadeIn first">
                         <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100"
                             width="180" />
-                        <h2 style="color:#969799;">Aroha File Box</h2>
+                        <h2 style="color:#969799;">Knowledge Repository</h2>
 
                     </div>
                     <br>
@@ -50,14 +50,19 @@
                             placeholder="User Email" required style="font-family: 'Courier New', Courier, monospace;">
                         <div *ngIf="f.eMail.errors && f.eMail.touched" class="invalid">
                             <div *ngIf="f.eMail.errors.required">
-                                <p>Email is required</p>
+                                <alert type="danger" [dismissible]="true">
+                                    <strong>Email is required</strong>
+                                </alert>
+
                             </div>
                         </div>
                         <input type="password" pInputText formControlName="userPwd" id="password" class="fadeIn third"
                             placeholder="password" required style="font-family: 'Courier New', Courier, monospace;">
                         <div *ngIf="f.userPwd.errors && f.userPwd.touched" class="invalid">
                             <div *ngIf="f.userPwd.errors.required">
-                                <p>Password is required</p>
+                                <alert type="danger" [dismissible]="true">
+                                    <strong>Password is required</strong>
+                                </alert>
                             </div>
                         </div>
                         <input type="submit" class="fadeIn fourth" value="Log In"

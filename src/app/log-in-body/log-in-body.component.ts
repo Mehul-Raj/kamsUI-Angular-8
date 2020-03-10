@@ -59,7 +59,7 @@ export class LogInBodyComponent implements OnInit {
         this.setMessage = { message: resp.msg, error: true };
       }
     }, err => {
-      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
   }
 }

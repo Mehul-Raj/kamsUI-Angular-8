@@ -5,6 +5,9 @@ import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TagNameService } from '../../module-service/tag-name.service';
+import { DepartmentService } from '../../module-service/department.service';
+import { ProjectService } from '../../module-service/project.service';
+import { TeamService } from '../../module-service/team.service';
 
 
 @Component({
@@ -15,7 +18,14 @@ import { TagNameService } from '../../module-service/tag-name.service';
 export class DashboardComponent implements OnInit {
 
   tagNameSubscription$: Subscription;
+  companyNameSubscription: Subscription;
+  departmentNameSubscription$: Subscription;
+  
   setMessage: any = {};
+  companyNames: string[];
+  departmentNames: string[];
+  projectNames:string[];
+  chartData: FormGroup;
   tagNames: string[];
   typeNames: string[];
   tagDataArray: string[] = [];
@@ -24,15 +34,35 @@ export class DashboardComponent implements OnInit {
   typeDataArray: string[] = [];
   typeNumberArray: number[] = [];
 
+  company: string;
+  departmentName:string;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private _tagNameService: TagNameService,
-
+    private _companyNameService: DepartmentService,
+    private _departmentNameService: ProjectService,
+    private _teamService:TeamService
   ) { }
 
   ngOnInit() {
+
+    //Initialze FormGroup
+    this.chartData = this.formBuilder.group({
+      companyName: ['', [Validators.required, Validators.minLength(1)]],
+      departmentName: ['', [Validators.required, Validators.minLength(2)]],
+      projectName: ['', [Validators.required, Validators.minLength(2)]],
+      teamName: ['', [Validators.required, Validators.minLength(2)]]
+    });
+
+    //Get Company Name
+    this.companyNameSubscription = this._companyNameService.getCompanyName().subscribe(resp => {
+      this.companyNames = resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
     //get Tag Name And Tag No
     this.tagNameSubscription$ = this._tagNameService.getTagData().subscribe(resp => {
       this.tagNames = resp;
@@ -56,9 +86,93 @@ export class DashboardComponent implements OnInit {
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
-
   }
 
+  onChange(event) {
+    this.tagDataArray.splice(0, this.tagDataArray.length);
+    this.tagNumberArray.splice(0, this.tagNumberArray.length);
+    //get Tag Name And Tag No Of Selected Company
+    this.company = event.target.value;
+    this.tagNameSubscription$ = this._tagNameService.getCompanyTagData(event.target.value).subscribe(resp => {
+      console.log(resp)
+      resp.forEach(element => {
+        this.tagDataArray.push(element.tagName);
+        this.tagNumberArray.push(element.tagNumber);
+      });
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    });
+
+    //Empty the Array
+    this.typeDataArray.splice(0, this.typeDataArray.length);
+    this.typeNumberArray.splice(0, this.typeNumberArray.length);
+    //get Type Name Type No Of Selected Company
+    this.tagNameSubscription$ = this._tagNameService.getCompanyTypeData(event.target.value).subscribe(resp => {
+      this.typeNames = resp;
+      resp.forEach(element => {
+        this.typeDataArray.push(element.typeName);
+        this.typeNumberArray.push(element.typeNumber);
+      });
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+
+    //Get Department
+    this.departmentNameSubscription$ = this._departmentNameService.getDepartmentName(event.target.value).subscribe(resp => {
+      this.departmentNames = resp;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
+
+  //Get Tag Data Based On Company And Department
+  onDepartment(event) {
+    this.departmentName=event.target.value;
+    //Empty the Array
+    this.tagDataArray.splice(0, this.tagDataArray.length);
+    this.tagNumberArray.splice(0, this.tagNumberArray.length);
+    
+    this.tagNameSubscription$ = this._tagNameService.getDepartmentTag(this.company,this.departmentName ).subscribe(resp => {
+      console.log(resp)
+      resp.forEach(element => {
+        this.tagDataArray.push(element.tagName);
+        this.tagNumberArray.push(element.tagNumber);
+      });
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    });
+
+     //get Type Name Type No Of Selected Company
+    //Empty the Array
+    this.typeDataArray.splice(0, this.typeDataArray.length);
+    this.typeNumberArray.splice(0, this.typeNumberArray.length);
+   
+    this.tagNameSubscription$ = this._tagNameService.getDepartmentType(this.company,this.departmentName).subscribe(resp => {
+      this.typeNames = resp;
+      resp.forEach(element => {
+        this.typeDataArray.push(element.typeName);
+        this.typeNumberArray.push(element.typeNumber);
+      });
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+
+    //Get Project Name
+    
+    let selected_Department=event.target.value;
+    this.departmentNameSubscription$ = this._teamService.getProjectName(this.company,selected_Department).subscribe(respObj => {
+      this.projectNames = respObj;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+  }
+
+
+
+
+
+
+  
   //Document tag Chart
   public barChartOptionsType = {
     scaleShowVerticalLines: false,
@@ -105,5 +219,6 @@ export class DashboardComponent implements OnInit {
   public ticks: {
     beginAtZero: true
   }
+
 }
 
