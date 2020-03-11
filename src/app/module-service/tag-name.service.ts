@@ -41,4 +41,14 @@ export class TagNameService {
     return this.http.get(this.baseUrl + '/api/dropbox/admin/typeDepartment/' + selectedCompany + '/' + selected_Department)
   }
 
+  //get Tag Data Project,Department And Company
+  getProjectTag(selectedCompany: string, selected_Department: string, selectedProject: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/tagProject/' + selectedCompany + '/' + selected_Department + '/' + selectedProject)
+  }
+
+  //get Tag Data Department And Company
+  getProjectType(selectedCompany: string, selected_Department: string, projectName: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/typeProject/' + selectedCompany + '/' + selected_Department + '/' + projectName)
+  }
+
 }

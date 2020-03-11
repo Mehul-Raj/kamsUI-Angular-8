@@ -19,20 +19,22 @@
             </div>
             <div class="form-group col">
                 <label>Select Project</label>
-                <select formControlName="projectName" class="form-control" required>
+                <select formControlName="projectName" class="form-control" (change)="onClickProject($event)" required>
                     <option value="">--Select--</option>
                     <option *ngFor="let project of projectNames" [value]="project.projectName">
                         {{project.projectName}}</option>
                 </select>
             </div>
-            <div class="form-group col">
+            <!-- <div class="form-group col">
                 <label>Select Team</label>
-                <select formControlName="projectName" class="form-control" required>
+                <select formControlName="projectName" class="form-control" (change)="onClickTeam($event)" required>
                     <option value="">--Select--</option>
                     <option *ngFor="let project of projectNames" [value]="project.projectName">
-                        {{project.projectName}}</option>
+                        {{team.teamName}}</option>
                 </select>
             </div>
+        -->
+            <button class="btn btn-secondary" (click)="onClickReset($event)" type="reset">Reset</button>
         </div>
     </form>
 </div>
