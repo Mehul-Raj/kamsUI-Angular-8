@@ -59,11 +59,9 @@ export class UserComponent implements OnInit {
     this.loadSearchComponent = false;
     this.loadShowComponent = false;
     this.loadUploadComponent = false;
+    
     this.userSubscription$ = this._userService.getDocument().subscribe(respObj => {
-      console.log(respObj)
       this.FileDetails = respObj;
-      console.log(respObj.storage)
-      console.log("File Details ", respObj)
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })

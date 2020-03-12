@@ -77,3 +77,6 @@ a:hover {
   thead{
       background-color: rgb(183, 183, 236);
   }
+  table {
+    width: 100%;
+  }

@@ -32,6 +32,8 @@ import {MatTableModule} from '@angular/material/table';
 import { TagComponent } from './admin/tag/tag.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
+import { ViewFileComponent } from './user/view-file/view-file.component';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { ChartsModule } from 'ng2-charts';
   
     TagComponent,
   
-    DashboardComponent
+    DashboardComponent,
+  
+    ViewFileComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,13 @@ import { ChartsModule } from 'ng2-charts';
     ToastrModule.forRoot(),
     AlertModule.forRoot(),
     BrowserModule,
-    ChartsModule
+    ChartsModule,
+    MatTableModule,
+    MatPaginatorModule
+  ],
+  exports: [
+    MatTableModule,
+    MatPaginatorModule
   ],
   
   providers: [StorageService,ConfirmationService],

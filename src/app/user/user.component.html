@@ -36,7 +36,9 @@
         <app-search *ngIf="loadSearchComponent"></app-search>
         <app-show *ngIf="loadShowComponent"></app-show>
         <app-upload *ngIf="loadUploadComponent"></app-upload>
-        <div *ngIf="showDocumant">
+        <app-view-file *ngIf="showDocumant"></app-view-file>
+        <!--<div *ngIf="showDocumant">
+                
             <table class="table">
                 <thead>
                     <td>File Name</td>
@@ -53,9 +55,8 @@
                     <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone" (click)="viewFile(fileData.fileUrl)"
                             aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
                 </tr>
-                
-            </table>
-    </div>
+            </table>           
+    </div> -->
 </div>
 </div>
 <appFooter-component></appFooter-component>
