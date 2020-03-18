@@ -212,9 +212,6 @@ export class DashboardComponent implements OnInit {
     this.ngOnInit();
   }
 
-
-
-
   //Document tag Chart
   public barChartOptionsType = {
     scaleShowVerticalLines: false,

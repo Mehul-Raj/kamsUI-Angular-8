@@ -84,16 +84,32 @@
                     <!-- Icon -->
                     <div class="fadeIn first">
                         <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
-                        <h2 style="color:#969799;">Aroha File Box</h2>
+                        <h2 style="color:#969799;">KNOWLEDGE REPOSITORY</h2>
                     </div>
                     <br>
-                    <!-- Generate PassWord -->
-                    <form [formGroup]="OTPForm" (ngSubmit)="onSubmit()">
-                        <input type="text" name="emailForOtp" id="login" class="fadeIn second" placeholder="Enter Email"
-                            required style="font-family: 'Courier New', Courier, monospace;">
-                        <input type="submit" class="fadeIn fourth" value="Generate OTP"
+                    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                    <!-- Generate PassWord      -->
+                    <form  [formGroup]="OTPForm" (ngSubmit)="changePassword()">
+                        <input *ngIf="getOtpButton" type="text" formControlName="eMailForOtp" id="login" class="fadeIn second"
+                            placeholder="Enter Email" required style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input  *ngIf="getOtpButton" type="button" class="fadeIn fourth" value="Generate OTP"
+                            style="font-family: 'Courier New', Courier, monospace;" (click)="getOtp()">
+
+                    <!-- Validate Otp
+                    <form *ngIf="enterNewPassword" [formGroup]="validate" (ngSubmit)="changePassword()">-->
+                        <input *ngIf="enterNewPassword" type="text" formControlName="otpInt" id="login" class="fadeIn second"
+                            placeholder="Enter OTP" required style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input *ngIf="enterNewPassword" type="text" formControlName="newPassword" id="login" class="fadeIn second"
+                            placeholder="Enter New Password" required
                             style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input *ngIf="enterNewPassword" type="submit" class="fadeIn fourth" value="Submit"
+                            style="font-family: 'Courier New', Courier, monospace;" (click)="changePassword()">
                     </form>
+                    <app-loading *ngIf="loading"></app-loading>
                     <!-- Login Again -->
                     <div id="formFooter">
                         <a class="underlineHover" id="showLogin" (click)="showLogin()"

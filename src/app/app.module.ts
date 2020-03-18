@@ -34,6 +34,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { ViewFileComponent } from './user/view-file/view-file.component';
 import { MatPaginatorModule } from '@angular/material';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { MatPaginatorModule } from '@angular/material';
   
     DashboardComponent,
   
-    ViewFileComponent
+    ViewFileComponent,
+  
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
