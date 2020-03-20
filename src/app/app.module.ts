@@ -35,6 +35,8 @@ import { ChartsModule } from 'ng2-charts';
 import { ViewFileComponent } from './user/view-file/view-file.component';
 import { MatPaginatorModule } from '@angular/material';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { SearchFileComponent } from './user/search/search-file/search-file.component';
+import { SearchTypeComponent } from './user/search/search-type/search-type.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,11 @@ import { LoadingComponent } from './shared/loading/loading.component';
   
     ViewFileComponent,
   
-    LoadingComponent
+    LoadingComponent,
+  
+    SearchFileComponent,
+  
+    SearchTypeComponent
   ],
   imports: [
     BrowserModule,

@@ -48,35 +48,38 @@ export class SearchComponent implements OnInit {
   }
   //Get File Based On Tag
   searchByTag() {
-    if (this.searchByTagData.invalid) {
+    this._storage.setSession('tagName',this.searchByTagData.value.searchByTagName);
+    this.y = true;
+    this.x = false;
+   /* if (this.searchByTagData.invalid) {
       return;
-    }
-
+    } 
     this.searchSubscription$ = this._searchService.getFileTag(this.searchByTagData.value).subscribe(resp => {
       this.y = true;
       this.FileDetailsTag = resp;
-      console.log(this.FileDetailsTag)
       this.x = false;
-
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
-    })
+    })*/
   }
 
   //Get File Based On Type
   searchByType() {
-    if (this.searchByTypeData.invalid) {
+    this._storage.setSession('typeName',this.searchByTypeData.value.searchByTypeName);
+    console.log(this._storage.getSession('typeName'))
+    this.z = true;
+    this.x = false;
+   /* if (this.searchByTypeData.invalid) {
       return;
     }
     this.searchSubscription$ = this._searchService.getFileType(this.searchByTypeData.value).subscribe(resp => {
       this.z = true;
       this.FileDetailsType = resp;
-      console.log(this.FileDetailsType)
       this.x = false;
     }, err => {
       this.z = true;
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
-    })
+    })*/
   }
 
   viewFile(url: string) {

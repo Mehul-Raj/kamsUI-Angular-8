@@ -54,7 +54,9 @@
 </div>
 
 <div *ngIf="y">
-    <table class="table">
+    <app-search-file ></app-search-file>
+    
+    <!--<table class="table">
         <thead>
             <td>File Name</td>
             <td>Uploaded By</td>
@@ -68,11 +70,13 @@
             <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
             <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
          </tr>
-    </table>
+    </table>-->
+
 </div>
 
 <div *ngIf="z">
-    <table class="table">
+    <app-search-type></app-search-type>
+   <!-- <table class="table">
         <thead>
             <td>File Name</td>
             <td>Uploaded By</td>
@@ -83,8 +87,10 @@
             <td>{{fileData.fileName}}</td>
             <td>{{fileData.uploadBy}}</td>
             <td>{{fileData.tag}}</td>
-            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
-            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
-         </tr>
-    </table>
+            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank"
+                    style="color: rgb(43, 128, 224); ">View</a></td>
+            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone" (click)="viewFile(fileData.fileUrl)"
+                    aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+        </tr>
+    </table>-->
 </div>

@@ -11,6 +11,7 @@ import { StorageService } from '../shared/storage.service';
 export class ShowService {
 
   eMail:string;
+  tagName:string;
   baseUrl = environment.baseUrl;
   constructor(
     private http: HttpClient,
@@ -26,7 +27,7 @@ export class ShowService {
   //get File Name based on Tags
   getFileTag(searchByTagData): Observable<any> {
     this.eMail = this._storage.getSession('eMail');
-    var searchByTag: { 'eMail': string, 'searchByTag': string} = { 'eMail': this.eMail, 'searchByTag': searchByTagData.searchByTagName};
+    var searchByTag: { 'eMail': string, 'searchByTag': string} = { 'eMail': this.eMail, 'searchByTag': this._storage.getSession('tagName')};
     return this.http.post<Array<FileDetails>>(this.baseUrl + '/api/dropbox/user/searchByTag',searchByTag
     , {
       headers: new HttpHeaders({
@@ -38,7 +39,7 @@ export class ShowService {
    //get File Name based on Types
    getFileType(searchByTypeData): Observable<any> {
     this.eMail = this._storage.getSession('eMail');
-    var searchByType: { 'eMail': string, 'searchByType': string} = { 'eMail': this.eMail, 'searchByType': searchByTypeData.searchByTypeName};
+    var searchByType: { 'eMail': string, 'searchByType': string} = { 'eMail': this.eMail, 'searchByType':this._storage.getSession('typeName')};
     return this.http.post<Array<FileDetails>>(this.baseUrl + '/api/dropbox/user/searchByType',searchByType
     , {
       headers: new HttpHeaders({

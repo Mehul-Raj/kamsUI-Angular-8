@@ -14,6 +14,7 @@ export class ViewFileComponent implements OnInit {
   displayedColumns: string[];
   setMessage: any = {};
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
 
   userSubscription: Subscription;
@@ -22,25 +23,32 @@ export class ViewFileComponent implements OnInit {
     private _userService: ShowService,
   ) { }
 
+  //Without Pagination
+
+  /*
+   ngOnInit() {
+     this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+     this.userSubscription = this._userService.getDocument().subscribe(respObj => {
+       this.responceObject = respObj;
+       this.dataSource = new MatTableDataSource(this.responceObject);
+     }, err => {
+       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+     })
+ */
+
+//With Pagination
   ngOnInit() {
     this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
     this.userSubscription = this._userService.getDocument().subscribe(respObj => {
-      this.responceObject = respObj;
-      this.dataSource = new MatTableDataSource(this.responceObject);
+      this.dataSource = new MatTableDataSource(respObj);
+      this.dataSource.paginator = this.paginator;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
-    })
-
-
+    }) 
   }
-
-
 
   //view File
   viewFile(url: string) {
     window.open(url, '_blank', '', true);
   }
-
-
-
 }
