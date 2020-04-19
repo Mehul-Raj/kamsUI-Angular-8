@@ -7,6 +7,7 @@ import { StorageService } from '../../shared/storage.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpEventType } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ShowService } from '../show.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  uploadFileData: FormGroup; uploadFileSubscription$: Subscription; tagNameSubscription$:Subscription;
+  uploadFileData: FormGroup; uploadFileSubscription$: Subscription; tagNameSubscription$:Subscription; userSubscription:Subscription;
   msg: String;
   status: String;
   setMessage: any = {};
@@ -23,7 +24,10 @@ export class UploadComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadFlag: boolean = false;
   eMail: string;
+  UserDetails:string;
   tagNames:string[];
+  public userName: string; public userCompany: string; public userDepartment: string; public userProject: string; public userTeam: string; public userRole:string
+  
   
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +35,7 @@ export class UploadComponent implements OnInit {
     private _storage: StorageService,
     private _uploadService: UploadService,
     private _http: HttpClient,
+    private _userService: ShowService
   ) { }
   baseUrl = environment.baseUrl;
   ngOnInit() {
@@ -44,6 +49,21 @@ export class UploadComponent implements OnInit {
       uploadTo: ['', [Validators.required, Validators.minLength(1)]],
       multiTag: ['', [Validators.required, Validators.minLength(2)]]
     });
+ 
+    //User Details
+    this.userSubscription = this._userService.getUserDetails().subscribe(respObj => {
+      console.log(respObj)
+      this.UserDetails = respObj;
+      this.userName=respObj.userName;
+      this.userCompany=respObj.userCompany;
+      this.userDepartment=respObj.userdepartment;
+      this.userProject=respObj.userProjectName;
+      this.userTeam=respObj.userTeamName;
+      this.userRole=respObj.userRole;
+    }, err => {
+      this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
+    })
+
     this.eMail = this._storage.getSession('eMail');
   }
 

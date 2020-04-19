@@ -31,7 +31,6 @@ export class CreateUserService {
 
    //get Comapny Name
    getCompanyName(): Observable<any> {
-    console.log("Get Company Name")
     return this.http.get<Array<CompayName>>(this.baseUrl + '/api/dropbox/admin/getCompanyName');
   }
 

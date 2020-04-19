@@ -15,9 +15,14 @@ export class CreateUserComponent implements OnInit {
 
   createUserData: FormGroup;
   teamSubscription$: Subscription; companyNameSubscription$: Subscription; departmentNameSubscription$: Subscription; projectNameSubscription$: Subscription;
-  companyNames: string[]; departmentNames: string[]; projectNames: string[]; teamNames: string[];
-  selectedCompany: string; selectedDepartment: string; selected_Company: string;
-  setMessage: any = {};;
+  companyNames: string[];
+  departmentNames: string[];
+  projectNames: string[];
+  teamNames: string[];
+  selectedCompany: string;
+  selectedDepartment: string;
+  selected_Company: string;
+  setMessage: any = {};
   msg: String; status: String;
 
   constructor(

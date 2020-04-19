@@ -13,15 +13,16 @@ import { Subscription } from 'rxjs';
 })
 export class LogInBodyComponent implements OnInit {
 
-  loginForm: FormGroup;
-  OTPForm: FormGroup;
-  validate: FormGroup;
-  showLoginForm: boolean = false;
-  loginSubscription$: Subscription;
-  setMessage: any = {};
-  enterNewPassword: boolean = false;
-  loading: boolean = false;
-  getOtpButton: boolean = true;
+  public loginForm: FormGroup;
+  public OTPForm: FormGroup;
+  public validate: FormGroup;
+  public showLoginForm: boolean = false;
+  public loginSubscription$: Subscription;
+  public setMessage: any = {};
+  public enterNewPassword: boolean = false;
+  public loading: boolean = false;
+  public getOtpButton: boolean = true;
+  public name: string;
 
   get f(): any { return this.loginForm.controls; }
   constructor(private formBuilder: FormBuilder,
@@ -53,15 +54,31 @@ export class LogInBodyComponent implements OnInit {
     }
     this.loginSubscription$ = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
       let userEmail = resp.eMail;
+      let userName = resp.userName;
+      let userCompany = resp.userCompany;
+      let userDepartment=resp.userdepartment;
+      let userProject=resp.userProjectName;
+      let userTeam=resp.userTeamName;
+      let userRole = resp.userRole;
+      this._storage.setSession('userName', userName);
+      this._storage.setSession('userCompany', userCompany);
+      this._storage.setSession('userDepartment', userDepartment);
+      this._storage.setSession('userProject', userProject);
+      this._storage.setSession('userTeam', userTeam);
+     
       if (resp.status.toUpperCase() == 'SUCCESS') {
+        console.log(resp)
         if (resp.userRole.toUpperCase() == 'ROLE_ADMIN') {
           this._storage.setSession('isAuthenticated', true);
           this._storage.setSession('eMail', userEmail);
+          this._storage.setSession('userRole', "Admin");
           this.router.navigate(['/admin']);
         }
         if (resp.userRole.toUpperCase() == 'ROLE_USER' || resp.userRole.toUpperCase() == 'ROLE_MANAGER' || resp.userRole == 'ROLE_TEAMLEAD') {
           this._storage.setSession("isAuthenticated", true);
           this._storage.setSession('eMail', userEmail);
+          this._storage.setSession('userRole',userRole);
+          console.log(this._storage.getSession('Admin'));
           this.router.navigate(['/user']);
         } else {
           this.setMessage = { message: resp.errorMessage, error: true };

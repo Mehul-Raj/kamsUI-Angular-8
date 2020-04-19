@@ -38,15 +38,16 @@ export class ViewFileComponent implements OnInit {
 
 //With Pagination
   ngOnInit() {
-    this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+    this.displayedColumns = ['position','uploadFileTo', 'name','company','project','Team', 'weight', 'size','symbol'];
     this.userSubscription = this._userService.getDocument().subscribe(respObj => {
+      console.log(respObj)
       this.dataSource = new MatTableDataSource(respObj);
       this.dataSource.paginator = this.paginator;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     }) 
   }
-
+  
   //view File
   viewFile(url: string) {
     window.open(url, '_blank', '', true);

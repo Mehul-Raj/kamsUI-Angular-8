@@ -39,7 +39,7 @@ export class SearchFileComponent implements OnInit {
 
   ngOnInit() {
     this.tagName = this._storage.getSession('tagName');
-    this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+    this.displayedColumns = ['position','uploadFileTo', 'name','company','project','Team', 'weight','size', 'symbol'];
     this.searchSubscription$ = this._searchService.getFileTag(this.tagName).subscribe(resp => {
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;

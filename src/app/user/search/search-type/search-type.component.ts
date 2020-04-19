@@ -40,7 +40,7 @@ export class SearchTypeComponent implements OnInit {
 
   ngOnInit() {
     this.typeName = this._storage.getSession('typeName');
-    this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+    this.displayedColumns = ['position','uploadFileTo', 'name','company','project','Team', 'weight', 'size','symbol'];
     this.searchSubscription$ = this._searchService.getFileType(this.typeName).subscribe(resp => {
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;

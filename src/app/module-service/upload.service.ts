@@ -22,4 +22,9 @@ export class UploadService {
   getTagName(): Observable<any> {
     return this.http.get(this.baseUrl + '/api/dropbox/admin/getTagName');
   }
+
+  //Get Tag Names
+  getUploadTo(): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/dropbox/admin/getTagName');
+  }
 }

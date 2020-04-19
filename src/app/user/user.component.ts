@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   private loadShowComponent: boolean = false;
   private loadUploadComponent: boolean = true;
   private showDocumant: boolean = false;
+  private showDetails:boolean=false;
 
   userSubscription$: Subscription;
   eMail: string;
@@ -22,6 +23,12 @@ export class UserComponent implements OnInit {
   setMessage: any = {};
   storageCloud: boolean;
   storageLocal: boolean;
+  userName: String;
+  userRole: String;
+  userCompany: string;
+  userDepartment: string;
+  userProject: string;
+  userTeam: string;
 
 
   constructor(
@@ -31,27 +38,33 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.eMail = this._storage.getSession('eMail');
+    this.userName = this._storage.getSession("userName");
+    this.userRole = this._storage.getSession("userRole");
+    this.userCompany = this._storage.getSession('userCompany');
+    this.userDepartment = this._storage.getSession('userDepartment');
+    this.userProject = this._storage.getSession('userProject');
+    this.userTeam = this._storage.getSession('userTeam');
   }
   SearchComponent() {
     this.loadUploadComponent = false;
     this.loadShowComponent = false;
     this.showDocumant = false;
-    //this.loadSearchComponent = !this.loadSearchComponent;
+    this.showDetails=false;
     this.loadSearchComponent = true;
   }
   ShowComponent() {
     this.loadUploadComponent = false;
     this.showDocumant = false;
     this.loadSearchComponent = false;
-    //this.loadShowComponent = !this.loadShowComponent;
+    this.showDetails=false;
     this.loadShowComponent = true;
 
   }
   UploadComponent() {
     this.loadSearchComponent = false;
     this.loadShowComponent = false;
-    // this.loadUploadComponent=!this.loadUploadComponent;
     this.loadUploadComponent = true;
+    this.showDetails=false;
     this.showDocumant = false;
   }
   onShow() {
@@ -59,12 +72,20 @@ export class UserComponent implements OnInit {
     this.loadSearchComponent = false;
     this.loadShowComponent = false;
     this.loadUploadComponent = false;
+    this.showDetails=false;
     
     this.userSubscription$ = this._userService.getDocument().subscribe(respObj => {
       this.FileDetails = respObj;
     }, err => {
       this.setMessage = { message: 'Server Error /Server Unreachable!', error: true };
     })
+  }
+  UserDetails() {
+    this.loadSearchComponent = false;
+    this.loadShowComponent = false;
+    this.loadUploadComponent = false;
+    this.showDocumant = false;
+    this.showDetails=true;
   }
 
   //View Url

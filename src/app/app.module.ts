@@ -37,6 +37,8 @@ import { MatPaginatorModule } from '@angular/material';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { SearchFileComponent } from './user/search/search-file/search-file.component';
 import { SearchTypeComponent } from './user/search/search-type/search-type.component';
+import { AllUserComponent } from './admin/all-user/all-user.component';
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,11 @@ import { SearchTypeComponent } from './user/search/search-type/search-type.compo
   
     SearchFileComponent,
   
-    SearchTypeComponent
+    SearchTypeComponent,
+  
+    AllUserComponent,
+  
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

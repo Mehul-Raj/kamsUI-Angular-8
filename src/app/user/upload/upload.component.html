@@ -15,15 +15,15 @@
                     <label>Upload To</label>
                     <select formControlName="uploadTo" class="form-control" required>
                         <option value="">--Select--</option>
-                        <option value="Company">Company</option>
-                        <option value="Department">Department</option>
-                        <option value="Project">Project</option>
-                        <option value="Team">Team</option>
+                        <option value="Company">Company ( {{userCompany}} )</option>
+                        <option value="Department">Department ({{userDepartment}})</option>
+                        <option value="Project">Project ({{userProject}})</option>
+                        <option value="Team">Team ({{userTeam}})</option>
                     </select>
                 </div>
                 <div class="form-group col">
                     <label>Select tag</label>
-                    <select formControlName="multiTag" class="form-control" required>
+                    <select formControlName="multiTag" class="form-control" required multiple>
                         <option *ngFor="let tag of tagNames"  [(ngValue)]="tag.tagName">
                             {{tag.tagName}}</option>
                     </select>
